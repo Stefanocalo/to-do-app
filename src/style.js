@@ -134,11 +134,34 @@ export const Close = styled.div`
     cursor: pointer;
     height: 2rem;
     width: 2rem;
+    margin: 0 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     :hover {
         background-color: ${(props) => props.theme.colors.red};
+        color: ${(props) => props.theme.colors.primary};
+        scale: 1.2;
+    }
+    :active {
+        scale: 1;
+    }
+`;
+
+export const Edit = styled.div`
+    background-color: ${(props) => props.theme.colors.primary};
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    :hover {
+        background-color: ${(props) => props.theme.colors.quaternary};
+        color: ${(props) => props.theme.colors.primary};
         scale: 1.2;
     }
     :active {
@@ -169,6 +192,7 @@ export const TodoContainer = styled.div`
     background-color: ${(props) => props.theme.colors.primary};
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 2rem 0;
     border-radius: 8px;
     height: 4rem;
@@ -187,12 +211,8 @@ export const TodoFeedContainer = styled.div`
     height: 100vh;
 `;
 
-export const DataContainer = styled.div`
-    margin-left: 1rem
-`;
-
 export const DetailContainer = styled.div`
-    margin-left: 1rem
+    margin: 0 1rem;
     
 `;
 
