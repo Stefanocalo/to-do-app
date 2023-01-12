@@ -34,8 +34,7 @@ export const CheckButton = ({todo}) => {
                 animate={checked ? 'checked' : 'unchecked'}
                 >
                 <BsCheckLg
-                style={{transition: '0.3s', color: 'green', fontSize: '1.2rem', fontWeight: 600, opacity: opacity, transition: '0.3s', transform: `translateY(${y})`}}
-                animate={checked ? 'checked' : 'unchecked'}
+                style={{transition: '0.3s', color: 'green', fontSize: '1.2rem', position: 'static', fontWeight: 600, opacity: opacity, transition: '0.3s', transform: `translateY(${y})`}}
                 />
         </motion.div>
     )

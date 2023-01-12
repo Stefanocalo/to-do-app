@@ -105,6 +105,7 @@ export const OptionWrapper = styled.div`
     padding: 2rem 0;
     position: sticky;
     top: 0;
+    z-index: 99;
 `;
 
 export const Modal = styled.div`
@@ -199,7 +200,7 @@ export const TodoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 2rem 0;
+    margin: 1rem 0;
     border-radius: 8px;
     height: 4rem;
     width: 60%;
