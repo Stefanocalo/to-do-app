@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 //Dependencies
 import { toast } from "react-hot-toast";
@@ -11,7 +11,7 @@ import './Todo.css';
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md';
 //Actions
-import { removeTodo } from "../../app/todoSlice";
+import { removeTodo, updateTodo } from "../../app/todoSlice";
 //Components
 import { TodoForm } from "../TodoForm/TodoForm";
 import { CheckButton } from "../Button/CheckButton";
@@ -19,10 +19,18 @@ import { CheckButton } from "../Button/CheckButton";
 export const Todo = ({todo}) => {
 
     const [editForm, setEditForm] = useState(false);
+    const [status, setStatus] = useState('incomplete');
 
    const style = todo.status === 'complete' ? 'line-through' : 'none';
 
    const dispatch = useDispatch();
+
+   useEffect(() => {
+    todo.status === 'complete' && setStatus('incomplete');
+    todo.status === 'incomplete' && setStatus('complete');
+   }, [todo.status])
+
+   // Action handlers
 
    const handleRemove = () => {
     dispatch(removeTodo(todo.id));
@@ -30,6 +38,15 @@ export const Todo = ({todo}) => {
         icon: <ImBin style={{color: 'red'}} />
     });
    }
+
+
+   const handleClick = () => {
+    dispatch(updateTodo({
+        ...todo,
+        status
+    }))
+    toast.success('Task updated correctly!')
+}
 
    const handleEdit = () => {
     setEditForm(true);
@@ -57,11 +74,14 @@ export const Todo = ({todo}) => {
 
     const color = theme.colors.primary
 
-
-
     return(
         <div className="toDoWrapper">
-            <animated.div className= 'action' role='button' style={{width: x, backgroundColor: theme.colors.buttonP}}>
+            <animated.div 
+            className= 'action' 
+            role='button' 
+            style={{width: x, backgroundColor: theme.colors.buttonP}}
+            onClick={() => handleClick()}
+            >
                 <p style={{marginLeft: '1rem', fontWeight: 600, color: theme.colors.primary}}>Complete</p>
             </animated.div>
             <animated.div
