@@ -1,6 +1,6 @@
 import React, {useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../app/todoSlice";
+import { addTodo, updateTodo } from "../../app/todoSlice";
 import uuid4 from "uuid4";
 
 
@@ -9,8 +9,9 @@ import { Modal, ModalContainer, Close, FormContainer, TaskForm, FormLabel, Butto
 import {MdOutlineClose} from 'react-icons/md';
 import { ButtonS } from "../../style";
 import { toast } from "react-hot-toast";
+import { useEffect } from "react";
 
-export const TodoForm = ({form, setForm}) => {
+export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => {
 
     const todos = useSelector(state => state.todo.category);
 
@@ -19,36 +20,52 @@ export const TodoForm = ({form, setForm}) => {
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if(type === 'update' && todo) {
+            setTitle(todo.title);
+            setStatus(todo.status);
+        }
+    }, [todo])
+
     const handleSubmit = (e) => {
         e.preventDefault();
-       if(title.length > 0 && status) {
-        dispatch(addTodo({
-            id: uuid4(),
-            title,
-            status,
-            date: new Date().toLocaleString(),
-        }))
 
-        //Show success toast and set all the variable to initial state;
-        toast.success('Task added succesfully!');
+       if(title.length > 0 && status) {
+        if(type === 'update') { 
+            dispatch(updateTodo({
+                ...todo,
+                title,
+                status
+            }))
+            toast.success('Task updated succesfully!');
+            setEditForm(false);
+        } else {
+            dispatch(addTodo({
+                id: uuid4(),
+                title,
+                status,
+                date: new Date().toLocaleString(),
+            }))
+            //Show success toast and set all the variable to initial state;
+            toast.success('Task added succesfully!');
+            setForm(false);
+        }
 
         setTitle('');
         setStatus('incomplete');
-        setForm(false);
        } else if (title.length === 0 && status){
         toast.error('Please specify a title for your task.')
        }
     }
 
     const handleCancel = () => {
-        setForm(false);
+        type === 'update' ? setEditForm(false) : setForm(false);
         setTitle('');
         setStatus('incomplete');
     }
 
-    const top = form ? 0 : 1000;
-    const blur = form ? 0.5 : 0;
-    const scale = form ? 1 : 0;
+    const top = form || editForm ? 0 : 1000;
+    const scale = form || editForm ? 1 : 0;
 
     return(
         <Modal style={{ top: top, scale:` ${scale}`}}>
@@ -61,7 +78,7 @@ export const TodoForm = ({form, setForm}) => {
                     </Close>
                 </div>
                 <FormContainer>
-                    <h2 style={{marginBottom: '1rem'}}>Add Task</h2>
+                    <h2 style={{marginBottom: '1rem'}}>{type === 'update' ? 'Update' : 'Add Task' }</h2>
                     <TaskForm
                     onSubmit={handleSubmit}
                     >
@@ -81,7 +98,7 @@ export const TodoForm = ({form, setForm}) => {
                         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin: '2rem 0'}}>
                             <ButtonP
                             type="submit"
-                            >Add Task</ButtonP>
+                            >{type === 'update' ? 'Update Task': 'Add Task'}</ButtonP>
                             <ButtonS
                             type='button'
                             onClick={() => handleCancel()}

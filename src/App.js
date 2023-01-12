@@ -8,6 +8,8 @@ import { Header } from './features/Header/Header';
 import { TodoFeed } from './features/TodoFeed/TodoFeed';
 import { TodoOptions } from './features/TodoOptions/TodoOptions';
 
+import './index.css';
+
 function App() {
   return (
     <ThemeProvider theme={theme}>

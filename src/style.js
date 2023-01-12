@@ -11,7 +11,7 @@ export const theme = {
     colors: {
         primary: '#f7f7f7',
         secondary: '#404040',
-        tertiary: '#e8efff',
+        tertiary: '#d8e0f0',
         quaternary: '#686c75',
         red: '#f2403d',
         buttonP: '#5e8df2',
@@ -37,7 +37,9 @@ export const Title = styled.p`
 export const ButtonP = styled.button`
     color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.buttonP};
-    width: 6rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 6rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
@@ -57,7 +59,9 @@ export const ButtonP = styled.button`
 export const ButtonS = styled.button`
     color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.buttonS};
-    width: 6rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 6rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
@@ -77,7 +81,9 @@ export const ButtonS = styled.button`
 export const SelectionB = styled.select`
     color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.buttonS};
-    width: 6rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 6rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
@@ -208,11 +214,13 @@ export const TodoFeedContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    min-height: 80vh;
 `;
 
 export const DetailContainer = styled.div`
     margin: 0 1rem;
+    min-width: 2rem;
+    min-heght: 2rem;
     
 `;
 

@@ -1,20 +1,27 @@
+import React, {useState} from "react";
+import { useDispatch } from "react-redux";
+//Dependencies
+import { toast } from "react-hot-toast";
 import { format } from "date-fns";
-import React from "react";
+//Style
 import { TodoContainer, DetailContainer, Close, Edit } from "../../style";
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md';
-import { useDispatch } from "react-redux";
+//Actions
 import { removeTodo } from "../../app/todoSlice";
-import { toast } from "react-hot-toast";
+//Components
+import { TodoForm } from "../TodoForm/TodoForm";
+import { CheckButton } from "../Button/CheckButton";
 
 export const Todo = ({todo}) => {
+
+    const [editForm, setEditForm] = useState(false);
 
    const style = todo.status === 'complete' ? 'line-through' : 'none';
 
    const dispatch = useDispatch();
 
    const handleRemove = () => {
-    console.log(`${todo.title} has been removed`)
     dispatch(removeTodo(todo.id));
     toast('Task removed succesfully', {
         icon: <ImBin style={{color: 'red'}} />
@@ -22,16 +29,18 @@ export const Todo = ({todo}) => {
    }
 
    const handleEdit = () => {
-    console.log(`${todo.title} is being edited`);
+    setEditForm(true);
    }
 
+   
+
     return(
+        <>
         <TodoContainer>
             <DetailContainer>
-                []
-                []
+                <CheckButton />
             </DetailContainer>
-            <DetailContainer>
+            <DetailContainer style={{textAlign: 'left', width: '80%'}}>
                 <p style={{ textDecorationLine: style, transition: '0.3s', fontSize: '1.3rem'}}>{todo.title}</p>
                 <p style={{fontSize: '0.8rem'}}>{format(new Date(todo.date), 'p, dd/mm/yyyy') }</p>
             </DetailContainer>
@@ -48,5 +57,7 @@ export const Todo = ({todo}) => {
                 </Edit>
             </div>
         </TodoContainer>
+        <TodoForm type='update' setEditForm={setEditForm} editForm={editForm} todo={todo}/>
+        </>
     )
 }
