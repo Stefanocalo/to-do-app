@@ -1,18 +1,17 @@
 import React, {useState} from "react";
 import { ButtonP, OptionWrapper} from "../../style";
-import { Select } from "../Button/Select";
+import { SelectButton } from "../Button/SelectButton";
 import { TodoForm } from "../TodoForm/TodoForm";
 
 export const TodoOptions = () => {
 
-    const [form, setForm] = useState('true')
+    const [form, setForm] = useState(false)
 
     return(
         <OptionWrapper>
-            <ButtonP>New Task</ButtonP>
-            <Select></Select>
-            <TodoForm />
-            
+            <ButtonP onClick={() => setForm(true)}>New Task</ButtonP>
+            <SelectButton />
+            <TodoForm form={form} setForm={setForm}/>
         </OptionWrapper>
     )
 }

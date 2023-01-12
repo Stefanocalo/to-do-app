@@ -1,17 +1,24 @@
 import styled from "@emotion/styled";
-import { produceWithPatches } from "immer";
+import { keyframes } from "@emotion/react";
+
+
+export const Main = styled.div`
+    color: ${(props) => props.theme.colors.secondary};
+    background-color: ${(props) => props.theme.colors.tertiary}
+`
 
 export const theme = {
     colors: {
         primary: '#f7f7f7',
         secondary: '#404040',
-        tertiary: '#214eb0',
+        tertiary: '#e8efff',
         quaternary: '#686c75',
         red: '#f2403d',
         buttonP: '#5e8df2',
-        buttonS: '#80889c'
+        buttonPhover: '#214eb0',
+        buttonS: '#b0b0b0'
     }
-}
+};
 
 export const HeaderContainer = styled.div`
     display:flex;
@@ -21,7 +28,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Title = styled.p`
-    color: ${(props) => props.theme.colors.tertiary},
+    color: ${(props) => props.theme.colors.buttonPhover},
     font-family: Roboto;
     font-size: 2rem;
     font-weight: 600;
@@ -39,7 +46,7 @@ export const ButtonP = styled.button`
     cursor: pointer;
     transition: 0.3s;
     :hover {
-        background-color: ${(props) => props.theme.colors.tertiary};
+        background-color: ${(props) => props.theme.colors.buttonPhover};
         scale: 1.2;
     }
     :active {
@@ -48,7 +55,7 @@ export const ButtonP = styled.button`
 `;
 
 export const ButtonS = styled.button`
-    color: ${(props) => props.theme.colors.secondary};
+    color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.buttonS};
     width: 6rem;
     height: 2.5rem;
@@ -67,7 +74,7 @@ export const ButtonS = styled.button`
     }
 `;
 
-export const Selection = styled.select`
+export const SelectionB = styled.select`
     color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.buttonS};
     width: 6rem;
@@ -80,15 +87,18 @@ export const Selection = styled.select`
     transition: 0.3s;
     :hover {
         background-color: ${(props) => props.theme.colors.quaternary};
-        scale: 1.2;
     }
    
 `;
 
 export const OptionWrapper = styled.div`
+    background-color: ${(props) => props.theme.colors.tertiary};
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 2rem 0;
+    position: sticky;
+    top: 0;
 `;
 
 export const Modal = styled.div`
@@ -96,12 +106,12 @@ export const Modal = styled.div`
     display:flex;
     align-items: center;
     justify-content: center;
-    top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(63, 0, 255, 0.1);
-    backdrop-filter: blur(0.2rem);
+    backdrop-filter: blur(0.5rem);
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
 `;
 
 export const ModalContainer = styled.div`
@@ -109,6 +119,12 @@ export const ModalContainer = styled.div`
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    transition: 0.8s;
+    width:60%;
+    @media (max-width: 900px) {
+        width: 90%;
+    }
 `;
 
 export const Close = styled.div`
@@ -131,9 +147,52 @@ export const Close = styled.div`
 `;
 
 export const FormContainer = styled.div`
-    background-color: ${(props) => props.theme.colors.primary};
-    height: 20rem;
-    width: 20rem;
+    background-color: ${(props) => props.theme.colors.tertiary};
+    width: 95%;
     margin: 1rem 0;
+    padding: 1rem;
     border-radius: 8px;
 `;
+
+export const TaskForm = styled.form`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const FormLabel = styled.label`
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1rem 0;
+`;
+
+export const TodoContainer = styled.div`
+    background-color: ${(props) => props.theme.colors.primary};
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    border-radius: 8px;
+    height: 4rem;
+    width: 60%;
+    @media (max-width: 900px) {
+        width: 95%;
+        margin: 0.7rem 0;
+    }
+`;
+
+export const TodoFeedContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+`;
+
+export const DataContainer = styled.div`
+    margin-left: 1rem
+`;
+
+export const DetailContainer = styled.div`
+    margin-left: 1rem
+    
+`;
+

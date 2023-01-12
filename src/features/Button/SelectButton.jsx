@@ -1,13 +1,14 @@
 import React from "react";
-import { Selection } from "../../style";
+import { SelectionB } from "../../style";
 
-export const Select = () => {
+export const SelectButton = () => {
 
     return(
-        <Selection id='status'>
+        <SelectionB
+        id='status'>
             <option value='all'>All</option>
             <option value='completed'>Complete</option>
             <option value='Incomplete'>Incomplete</option>
-        </Selection>
+        </SelectionB>
     )
 }
