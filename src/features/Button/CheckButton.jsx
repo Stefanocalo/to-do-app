@@ -2,62 +2,41 @@ import React, {useState} from 'react';
 import {motion, useMotionValue, useTransform} from 'framer-motion';
 
 import { theme } from '../../style';
+import { BsCheckLg } from 'react-icons/bs';
 
 
 
-export const CheckButton = () => {
-
-    const checkVariants = {
-        initial: {
-            color: theme.colors.primary,
-        },
-        checked: {
-            pathlenght: 1,
-    
-        },
-        unchecked: {
-            pathlength: 0,
-        }
-       }
+export const CheckButton = ({todo}) => {
     
        const boxVariant = {
         checked: {
-            background: '#fff',
+            background: theme.colors.buttonS,
             transition: '0.3s'
         },
         unchecked: {
-            background: theme.colors.secondary,
+            background: theme.colors.tertiary,
             transition: '0.3s',
         }
        }
     
        const [checked, setChecked] = useState(false);
 
-       const pathlenght = useMotionValue(0);
-       const opacity = useTransform(pathlenght, [.05, .15], [0, 1])
-    
+     
+       const opacity = checked ? 1 : 0;
+       const y = checked ? '0' : '3rem';
+       
 
     return(
         <motion.div
                 onClick={() => setChecked(!checked)}
-                style={{width: '2rem', height: '2rem', borderRadius: '5px', cursor: 'pointer'}}
+                style={{width: '2rem', height: '2rem', borderRadius: '5px', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden'}}
                 variants={boxVariant}
                 animate={checked ? 'checked' : 'unchecked'}
                 >
-                    <motion.svg 
-                    style={{pathlenght, opacity}}
-                    viewBox="0 0 53 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <motion.path
-                            variants={checkVariants}
-                            animate={checked ? 'checked' : 'unchecked'}
-                            fill='none'
-                            strokeMiterlimit="10"
-                            strokeWidth="6"
-                            d="M1.5 22L16 36.5L51.5 1"
-                            strokeLinejoin="round"
-                            strokeLinecap="round"
-                        ></motion.path>
-                    </motion.svg>
+                <BsCheckLg
+                style={{transition: '0.3s', color: 'green', fontSize: '1.2rem', fontWeight: 600, opacity: opacity, transition: '0.3s', transform: `translateY(${y})`}}
+                animate={checked ? 'checked' : 'unchecked'}
+                />
         </motion.div>
     )
 }

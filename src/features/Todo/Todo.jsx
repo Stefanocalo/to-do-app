@@ -38,7 +38,7 @@ export const Todo = ({todo}) => {
         <>
         <TodoContainer>
             <DetailContainer>
-                <CheckButton />
+                <CheckButton todo={todo}/>
             </DetailContainer>
             <DetailContainer style={{textAlign: 'left', width: '80%'}}>
                 <p style={{ textDecorationLine: style, transition: '0.3s', fontSize: '1.3rem'}}>{todo.title}</p>
