@@ -119,6 +119,7 @@ export const Modal = styled.div`
     backdrop-filter: blur(0.5rem);
     background-color: rgba(0, 0, 0, 0.5);
     transition: 0.5s;
+    z-index: 99
 `;
 
 export const ModalContainer = styled.div`

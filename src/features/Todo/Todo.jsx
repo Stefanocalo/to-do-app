@@ -82,7 +82,7 @@ export const Todo = ({todo}) => {
             style={{width: x, backgroundColor: theme.colors.buttonP}}
             onClick={() => handleClick()}
             >
-                <p style={{marginLeft: '1rem', fontWeight: 600, color: theme.colors.primary}}>Complete</p>
+                <p style={{marginLeft: '1rem', fontWeight: 600, color: theme.colors.primary}}>{todo.status === 'incomplete' ? 'Complete' : 'Undo'}</p>
             </animated.div>
             <animated.div
             style={{x, backgroundColor: color}}
