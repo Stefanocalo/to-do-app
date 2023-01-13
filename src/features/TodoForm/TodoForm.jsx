@@ -54,28 +54,49 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     currentTag = tag.tag;
                 }
             })
-            dispatch(updateTag({
-                tagId: currentId,
-                color: color,
-                tag: tag
-            }))
+            if(edit) {
+                dispatch(updateTag({
+                    tagId: currentId,
+                    color: color,
+                    tag: tag
+                }))
+                dispatch(updateTodo({
+                    ...todo,
+                    title,
+                    tag,
+                    status,
+                }))
+                todos.forEach(todo => {
+                    if(todo.tag === currentTag) {
+                        dispatch(updateTodo({
+                            ...todo,
+                            tag,
+                        }))
+                    }
+                })
+                setEdit(false);
+                setEditForm(false);
+            }
+            if(addNew) {
+                if (tags?.filter((element) => element.tag === tag).length === 0) {
+                    dispatch(addTag({
+                        tag,
+                        tagId: uuid4(),
+                        color
+                    }))
+                } else {
+                    toast.error('exist');
+                }
+            }
             dispatch(updateTodo({
                 ...todo,
                 title,
                 tag,
                 status,
             }))
-            todos.forEach(todo => {
-                if(todo.tag === currentTag) {
-                    dispatch(updateTodo({
-                        ...todo,
-                        tag,
-                    }))
-                }
-            })
-            
-            toast.success('Task updated succesfully!');
+            setAddNew(false);
             setEditForm(false);
+            toast.success('Task updated succesfully!');
         } else {
             dispatch(addTodo({
                 id: uuid4(),
@@ -100,7 +121,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             setTitle('');
             setStatus('incomplete');
             setAddNew(false);
-            setEdit(false);
             setColor('blue');
         }
 
@@ -110,6 +130,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
        } else if (tag.length === 0) {
         toast.error('Please specify a title for the tag.')
        }
+
     }
 
     const handleCancel = () => {

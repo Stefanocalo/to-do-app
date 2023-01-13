@@ -76,7 +76,7 @@ const todoSlice = createSlice({
             window.localStorage.setItem('tag', JSON.stringify(action.payload))
         }
        },
-       updateTag: (state, action, name) => {
+       updateTag: (state, action) => {
         const localTag = window.localStorage.getItem('tag');
         if(localTag) {
             const local = JSON.parse(localTag);

@@ -42,7 +42,7 @@ export const TodoFeed = () => {
                 </>)
             }
             {
-                todos.length === 0 && (
+                todos?.length === 0 && (
                     <>
                     <h2>No Tasks</h2>
                     </>
