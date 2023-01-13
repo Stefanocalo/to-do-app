@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //Dependencies
 import { toast } from "react-hot-toast";
 import { format } from "date-fns";
@@ -11,7 +11,7 @@ import './Todo.css';
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md';
 //Actions
-import { removeTodo, updateTodo } from "../../app/todoSlice";
+import todoSlice, { removeTodo, updateTodo } from "../../app/todoSlice";
 //Components
 import { TodoForm } from "../TodoForm/TodoForm";
 import { CheckButton } from "../Button/CheckButton";
@@ -20,15 +20,25 @@ export const Todo = ({todo}) => {
 
     const [editForm, setEditForm] = useState(false);
     const [status, setStatus] = useState('incomplete');
+    const [tagColor, setTagColor] = useState(null);
 
    const style = todo.status === 'complete' ? 'line-through' : 'none';
 
    const dispatch = useDispatch();
+   const tags = useSelector((state) => state.todo.tag);
 
    useEffect(() => {
     todo.status === 'complete' && setStatus('incomplete');
     todo.status === 'incomplete' && setStatus('complete');
    }, [todo.status])
+
+   useEffect(() => {
+    tags.map((tag) => {
+        if(tag.tag === todo.tag) {
+            setTagColor(tag.color);
+        }
+    })
+   }, [])
 
    // Action handlers
 
@@ -72,7 +82,13 @@ export const Todo = ({todo}) => {
     }
   )
 
-    const color = theme.colors.primary
+
+
+
+
+
+    const color = theme.colors.primary;
+    const todoTag = todo.tag;
 
     return(
         <div className="toDoWrapper">
@@ -93,6 +109,11 @@ export const Todo = ({todo}) => {
                 <DetailContainer style={{textAlign: 'left', width: '80%'}}>
                     <p style={{ textDecorationLine: style, transition: '0.3s', fontSize: '1.3rem'}}>{todo.title}</p>
                     <p style={{fontSize: '0.8rem'}}>{todo.date}</p>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                        <p style={{fontSize: '0.8rem'}}>{todo.tag}</p>
+                        <div style={{height: '0.6rem', width: '0.6rem', borderRadius: '3px', border: `1px solid ${theme.colors.primary}`, backgroundColor: tagColor, margin: '0.2rem', transition: '0.3s'}}/>
+                    </div>
+                    
                 </DetailContainer>
                 <div style={{display: "flex", justifyContent: 'space-around'}}>
                     <Close 

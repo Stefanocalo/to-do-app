@@ -4,10 +4,10 @@
     justify-content: space-between;
     margin: 1rem 0;
     border-radius: 8px;
-    height: 4rem;
+    min-height: 4rem;
     width: 60%;
-    touch-action: none;
     cursor: grab;
+    touch-action: none;
 }
 
 .toDoWrapper {
@@ -18,7 +18,7 @@
 }
 
 .action {
-    height: 3.9rem; 
+    min-height: 3.9rem; 
     border-radius: 8px;
     position: absolute;
     left: 20%;
@@ -32,7 +32,7 @@
 @media (max-width: 900px) {
     .todoContainer {
         width: 95%;
-        margin: 0.7rem 0;
+        margin: 1rem 0;
     }
     .action {
         left: 2%

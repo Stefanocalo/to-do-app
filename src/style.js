@@ -56,6 +56,50 @@ export const ButtonP = styled.button`
     }
 `;
 
+export const NewTag = styled.button`
+    color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.buttonP};
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    :hover {
+        background-color: ${(props) => props.theme.colors.buttonPhover};
+        scale: 1.2;
+    }
+    :active {
+        scale: 1;
+    }
+`;
+
+export const CancelNewTag = styled.button`
+    color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.buttonS};
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    :hover {
+        background-color: ${(props) => props.theme.colors.red};
+        scale: 1.2;
+    }
+    :active {
+        scale: 1;
+    }
+`;
+
 export const ButtonS = styled.button`
     color: ${(props) => props.theme.colors.primary};
     background-color: ${(props) => props.theme.colors.buttonS};

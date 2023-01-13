@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import uuid4 from "uuid4";
 
 const getTodoList = () => {
     const localTodoList = window.localStorage.getItem('todolist');
@@ -10,8 +9,18 @@ const getTodoList = () => {
     }
 }
 
+const getTag = () => {
+    const localTaglist = window.localStorage.getItem('tag');
+    if(localTaglist) {
+        return JSON.parse(localTaglist);
+    } else {
+        window.localStorage.setItem('tag', JSON.stringify([]))
+    }
+};
+
 const initialState = {
     todolist: getTodoList(), 
+    tag: getTag()
 }
 
 const todoSlice = createSlice({
@@ -54,11 +63,22 @@ const todoSlice = createSlice({
             state.todolist = local;
             });
         }
+       },
+       addTag: (state, action) => {
+        const localTodoList = window.localStorage.getItem('tag');
+        if(localTodoList) {
+            const local = JSON.parse(localTodoList);
+            local.push({...action.payload});
+            window.localStorage.setItem('tag', JSON.stringify(local));
+            state.tag = local;
+        } else {
+            window.localStorage.setItem('tag', JSON.stringify(action.payload))
+        }
        }
         
     }
 });
 
 
-export const {addTodo, removeTodo, updateTodo} = todoSlice.actions;
+export const {addTodo, removeTodo, updateTodo, addTag} = todoSlice.actions;
 export default todoSlice.reducer;
