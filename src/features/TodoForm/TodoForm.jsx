@@ -40,7 +40,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-       if(title.length > 0 && status && tag) {
+       if(title.length > 0 && status && tag.length > 0) {
         if(type === 'update') { 
             dispatch(updateTodo({
                 ...todo,
@@ -56,7 +56,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 title,
                 status,
                 tag,
-                date: format(new Date(), 'p, dd/MM/yyyy')
+                date: format(new Date(), 'p, dd/MM/yyyy'),
             }))
             // Add tag if not already in the state
             if (tags?.filter((element) => element.tag === tag).length === 0) {
@@ -78,8 +78,10 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
         setTag('Main');
         setAddNew(false);
         setColor('blue');
-       } else if (title.length === 0 && status){
+       } else if (title.length === 0){
         toast.error('Please specify a title for your task.')
+       } else if (tag.length === 0) {
+        toast.error('Please specify a title for the tag.')
        }
     }
 
@@ -114,7 +116,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         <FormLabel htmlFor="title">Title</FormLabel>
                         <input 
                         style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
-                        type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value)} ></input>
+                        type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))} ></input>
                         <FormLabel htmlFor="status">Status</FormLabel>
                         <select 
                         style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
@@ -143,7 +145,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                             )}
                             {addNew && (<>
                             <input 
-                                type='text' value={tag} onChange={(e) => setTag(e.target.value)}
+                                type='text' value={tag} onChange={(e) => setTag(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
                                 style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             >
                             </input>

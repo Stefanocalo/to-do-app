@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { ButtonP, OptionWrapper} from "../../style";
+import { ButtonP, OptionWrapper, ButtonAdd} from "../../style";
 import { SelectButton } from "../Button/SelectButton";
 import { TodoForm } from "../TodoForm/TodoForm";
 
@@ -9,7 +9,8 @@ export const TodoOptions = () => {
 
     return(
         <OptionWrapper>
-            <ButtonP onClick={() => setForm(true)}>New Task</ButtonP>
+            <ButtonP>Select All</ButtonP>
+            <ButtonAdd onClick={() => setForm(true)}>+</ButtonAdd>
             <SelectButton />
             <TodoForm form={form} setForm={setForm}/>
         </OptionWrapper>
