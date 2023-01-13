@@ -2,6 +2,7 @@ import React, {useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, updateTodo } from "../../app/todoSlice";
 import uuid4 from "uuid4";
+import format from "date-fns/format";
 
 
 // Style
@@ -44,7 +45,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 id: uuid4(),
                 title,
                 status,
-                date: new Date().toLocaleString(),
+                date: format(new Date(), 'p, MM//dd//yyyy') ,
             }))
             //Show success toast and set all the variable to initial state;
             toast.success('Task added succesfully!');
