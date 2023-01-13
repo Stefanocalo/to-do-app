@@ -10,7 +10,7 @@ export const TodoFeed = () => {
     let x = 0; 
 
     const getCompleted = () => {
-        todos.map(todo => {
+        todos?.map(todo => {
             (todo.status === 'complete') && (x = x+ 1);
             return`Completed Tasks - ${x}`;
         })
