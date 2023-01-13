@@ -92,7 +92,7 @@ export const Todo = ({todo}) => {
                 </DetailContainer>
                 <DetailContainer style={{textAlign: 'left', width: '80%'}}>
                     <p style={{ textDecorationLine: style, transition: '0.3s', fontSize: '1.3rem'}}>{todo.title}</p>
-                    <p style={{fontSize: '0.8rem'}}>{format(new Date(todo.date), 'p, dd/mm/yyyy') }</p>
+                    <p style={{fontSize: '0.8rem'}}>{format(new Date(todo.date), 'p, MM//dd//yyyy') }</p>
                 </DetailContainer>
                 <div style={{display: "flex", justifyContent: 'space-around'}}>
                     <Close 
