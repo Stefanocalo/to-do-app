@@ -20,6 +20,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     const [status, setStatus] = useState('incomplete');
     const [tag, setTag] = useState('Main');
     const [addNew, setAddNew] = useState(false);
+    const [edit, setEdit] = useState(false);
     const [color, setColor] = useState('blue');
 
 
@@ -53,7 +54,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     currentTag = tag.tag;
                 }
             })
-            console.log(currentTag);
             dispatch(updateTag({
                 tagId: currentId,
                 color: color,
@@ -100,6 +100,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             setTitle('');
             setStatus('incomplete');
             setAddNew(false);
+            setEdit(false);
             setColor('blue');
         }
 
@@ -119,6 +120,8 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             setTag('Main');
             setAddNew(false);
             setColor('blue');
+        } else {
+            setEdit(false);
         }
     }
 
@@ -157,7 +160,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
 
                         <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-around', margin: '2rem 0'}}>
                             <FormLabel htmlFor="tag">Tag:</FormLabel>
-                            {!addNew && (<><select 
+                            {(!addNew && !edit) && (<><select 
                             style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             name="tag"
                             value={tag}
@@ -165,13 +168,17 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                                 {tags?.length === 0 && <option>{tag}</option>}
                                 {tags?.map((element, index) => <option key={index}>{element.tag}</option>)}
                             </select>
+                            {type === 'update' && (<NewTag
+                             type="button"
+                             onClick={() => setEdit(!edit)}
+                             >Edit tag</NewTag>)}
                              <NewTag
                              type="button"
                              onClick={() => setAddNew(!addNew)}
-                             >{type === 'update' ? 'Edit tag' : 'Add new'}</NewTag>
+                             >Add new tag</NewTag>
                              </>
                             )}
-                            {addNew && (<>
+                            {(addNew || edit) && (<>
                             <input 
                                 type='text' value={tag} onChange={(e) => setTag(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
                                 style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
@@ -192,9 +199,13 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                                 <div style={{height: '2rem', width: '2rem', borderRadius: '8px', border: `1px solid ${theme.colors.primary}`, backgroundColor: color, margin: '0.2rem', transition: '0.3s'}}/>
                             </div>
 
-                            <CancelNewTag type='button' onClick={() => setAddNew(false)}>
+                            {edit && (<CancelNewTag type='button' onClick={() => setEdit(false)}>
                                 Back
-                            </CancelNewTag>
+                            </CancelNewTag>)}
+
+                            {addNew && (<CancelNewTag type='button' onClick={() => setAddNew(false)}>
+                                Back
+                            </CancelNewTag>)}
                             </>)}
                         </div>
 
