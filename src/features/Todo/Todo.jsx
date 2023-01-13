@@ -38,7 +38,7 @@ export const Todo = ({todo}) => {
             setTagColor(tag.color);
         }
     })
-   }, [todo.tag])
+   }, [todo.tag, tags])
 
    // Action handlers
 

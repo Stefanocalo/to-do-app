@@ -10,12 +10,10 @@ import { toast } from "react-hot-toast";
 import { Modal, ModalContainer, Close, FormContainer, TaskForm, FormLabel, ButtonP, NewTag,CancelNewTag, ButtonS, theme } from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
 
-//react-icons
-import {IoIosColorPalette} from 'react-icons/io';
 
 export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => {
 
-    const todos = useSelector(state => state.todo.category);
+    const todos = useSelector(state => state.todo.todolist);
     const tags = useSelector(state => state.todo.tag);
 
     const [title, setTitle] = useState('');
@@ -31,7 +29,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
         if(type === 'update' && todo) {
             setTitle(todo.title);
             setStatus(todo.status);
-            console.log(todo.tag)
             setTag(todo.tag);
             setAddNew(false);
             tags.map((tag) => {
@@ -42,36 +39,41 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
         }
     }, [todo]);
 
-    const getTagId = () => {
-        tags.forEach(element => {
-            if(element.tag === tag) {
-                console.log(element.tagId);
-            }
-        });
-    }
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
        if(title.length > 0 && status && tag.length > 0) {
         if(type === 'update') { 
-            if (tags?.filter((element) => element.tag === tag).length === 0) {
-                dispatch(addTag({
-                    tag,
-                    tagId: uuid4(),
-                    color
-                }))
-            }
+            let currentId;
+            let currentTag;
+            tags.forEach(tag => {
+                if(tag.tag === todo.tag) {
+                    currentId = tag.tagId;
+                    currentTag = tag.tag;
+                }
+            })
+            console.log(currentTag);
+            dispatch(updateTag({
+                tagId: currentId,
+                color: color,
+                tag: tag
+            }))
             dispatch(updateTodo({
                 ...todo,
                 title,
-                status,
                 tag,
+                status,
             }))
-            dispatch(updateTag({
-
-            }))
+            todos.forEach(todo => {
+                if(todo.tag === currentTag) {
+                    dispatch(updateTodo({
+                        ...todo,
+                        tag,
+                    }))
+                }
+            })
+            
             toast.success('Task updated succesfully!');
             setEditForm(false);
         } else {
@@ -160,13 +162,13 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                             name="tag"
                             value={tag}
                             onChange={(e) => setTag(e.target.value)}>
-                                {tags.length === 0 && <option>{tag}</option>}
-                                {tags.map((element, index) => <option key={index}>{element.tag}</option>)}
+                                {tags?.length === 0 && <option>{tag}</option>}
+                                {tags?.map((element, index) => <option key={index}>{element.tag}</option>)}
                             </select>
                              <NewTag
                              type="button"
                              onClick={() => setAddNew(!addNew)}
-                             >Add new</NewTag>
+                             >{type === 'update' ? 'Edit tag' : 'Add new'}</NewTag>
                              </>
                             )}
                             {addNew && (<>
