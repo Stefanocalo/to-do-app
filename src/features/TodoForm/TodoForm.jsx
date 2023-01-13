@@ -42,6 +42,13 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
 
        if(title.length > 0 && status && tag.length > 0) {
         if(type === 'update') { 
+            if (tags?.filter((element) => element.tag === tag).length === 0) {
+                dispatch(addTag({
+                    tag,
+                    tagId: uuid4(),
+                    color
+                }))
+            }
             dispatch(updateTodo({
                 ...todo,
                 title,

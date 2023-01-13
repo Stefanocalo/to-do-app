@@ -18,7 +18,7 @@ export const TodoFeed = () => {
     };
     const getIncomplete = () => {
         todos?.map(todo => {
-            (todo.status === 'incomplete') && (z =+ 1);
+            (todo.status === 'incomplete') && (z += 1);
             return z;
         })
     };
