@@ -66,20 +66,35 @@ const todoSlice = createSlice({
         }
        },
        addTag: (state, action) => {
-        const localTodoList = window.localStorage.getItem('tag');
-        if(localTodoList) {
-            const local = JSON.parse(localTodoList);
+        const localTag = window.localStorage.getItem('tag');
+        if(localTag) {
+            const local = JSON.parse(localTag);
             local.push({...action.payload});
             window.localStorage.setItem('tag', JSON.stringify(local));
             state.tag = local;
         } else {
             window.localStorage.setItem('tag', JSON.stringify(action.payload))
         }
+       },
+       updateTag: (state, action) => {
+        const localTag = window.localStorage.getItem('tag');
+        if(localTag) {
+            const local = JSON.parse(localTag);
+            local.forEach((element) => {
+                if(element.tagId === action.payload.tagId) {
+                    element.color = action.payload.color;
+                    element.tag = action.payload.tag;
+                }
+            });
+            window.localStorage.setItem('get', JSON.stringify(local));
+            state.tag = local;
+        }
        }
+       
         
     }
 });
 
 
-export const {addTodo, removeTodo, updateTodo, addTag} = todoSlice.actions;
+export const {addTodo, removeTodo, updateTodo, addTag, updateTag} = todoSlice.actions;
 export default todoSlice.reducer;

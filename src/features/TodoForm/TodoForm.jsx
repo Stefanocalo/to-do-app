@@ -1,7 +1,7 @@
 import React, {useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, updateTodo, addTag } from "../../app/todoSlice";
+import { addTodo, updateTodo, addTag, updateTag } from "../../app/todoSlice";
 import uuid4 from "uuid4";
 import format from "date-fns/format";
 import { toast } from "react-hot-toast";
@@ -16,6 +16,7 @@ import {IoIosColorPalette} from 'react-icons/io';
 export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => {
 
     const todos = useSelector(state => state.todo.category);
+    const tags = useSelector(state => state.todo.tag);
 
     const [title, setTitle] = useState('');
     const [status, setStatus] = useState('incomplete');
@@ -23,7 +24,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     const [addNew, setAddNew] = useState(false);
     const [color, setColor] = useState('blue');
 
-    const tags = useSelector(state => state.todo.tag);
 
     const dispatch = useDispatch();
 
@@ -31,11 +31,25 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
         if(type === 'update' && todo) {
             setTitle(todo.title);
             setStatus(todo.status);
+            console.log(todo.tag)
             setTag(todo.tag);
             setAddNew(false);
-            setColor('blue');
+            tags.map((tag) => {
+                if(tag.tag === todo.tag) {
+                    setColor(tag.color);
+                }
+            })
         }
-    }, [todo])
+    }, [todo]);
+
+    const getTagId = () => {
+        tags.forEach(element => {
+            if(element.tag === tag) {
+                console.log(element.tagId);
+            }
+        });
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,6 +68,9 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 title,
                 status,
                 tag,
+            }))
+            dispatch(updateTag({
+
             }))
             toast.success('Task updated succesfully!');
             setEditForm(false);
@@ -78,13 +95,13 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             //Show success toast and set all the variable to initial state;
             toast.success('Task added succesfully!');
             setForm(false);
+            setTitle('');
+            setStatus('incomplete');
+            setAddNew(false);
+            setColor('blue');
         }
 
-        setTitle('');
-        setStatus('incomplete');
-        setTag('Main');
-        setAddNew(false);
-        setColor('blue');
+       
        } else if (title.length === 0){
         toast.error('Please specify a title for your task.')
        } else if (tag.length === 0) {
@@ -94,11 +111,13 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
 
     const handleCancel = () => {
         type === 'update' ? setEditForm(false) : setForm(false);
-        setTitle('');
-        setStatus('incomplete');
-        setTag('Main');
-        setAddNew(false);
-        setColor('blue');
+        if(type !== 'update') {
+            setTitle('');
+            setStatus('incomplete');
+            setTag('Main');
+            setAddNew(false);
+            setColor('blue');
+        }
     }
 
     const top = form || editForm ? 0 : 1000;

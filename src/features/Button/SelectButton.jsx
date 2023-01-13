@@ -8,8 +8,6 @@ export const SelectButton = () => {
 
     const tags = useSelector(state => state.todo.tag);
 
-    console.log(tags);
-
     return(
         <SelectionB
         onChange={(e) => setFilter(e.target.value)}
