@@ -46,7 +46,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             })
         }
        
-    }, [todo, tag]);
+    }, [todo, type]);
 
 
 
