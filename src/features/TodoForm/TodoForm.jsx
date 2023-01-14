@@ -9,7 +9,6 @@ import { toast } from "react-hot-toast";
 // Style
 import { Modal, ModalContainer, Close, FormContainer, TaskForm, FormLabel, ButtonP, NewTag,CancelNewTag, ButtonS, theme } from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
-import { update } from "react-spring";
 
 
 export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => {
@@ -137,7 +136,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         setTitle('');
                         setStatus('incomplete');
                         setAddNew(false);
-                        setColor('blue');
                 } else {
                     toast.error(`'${tag}' already exist. Choose a different tag name.`);
                 }
@@ -164,7 +162,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                   setTitle('');
                   setStatus('incomplete');
                   setAddNew(false);
-                  setColor('blue');
                   toast.success('Task added succesfully!');
             }            
         }       
@@ -183,7 +180,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             setStatus('incomplete');
             setTag('Main');
             setAddNew(false);
-            setColor('blue');
         } else {
             setEdit(false);
         }
