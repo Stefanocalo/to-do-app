@@ -24,7 +24,10 @@ export const CheckButton = ({todo}) => {
      
        const opacity = checked ? 1 : 0;
        const y = checked ? '0' : '3rem';
+       const background = checked ? theme.colors.buttonP : 'none';
+       const measure = checked ? '1.4rem' : 0
        
+       //<BsCheckLg style={{transition: '0.3s', color: 'green', fontSize: '1.2rem', position: 'static', fontWeight: 600, opacity: opacity, transition: '0.3s', transform: `translateY(${y})`}}/>
 
     return(
         <motion.div
@@ -33,9 +36,7 @@ export const CheckButton = ({todo}) => {
                 variants={boxVariant}
                 animate={checked ? 'checked' : 'unchecked'}
                 >
-                <BsCheckLg
-                style={{transition: '0.3s', color: 'green', fontSize: '1.2rem', position: 'static', fontWeight: 600, opacity: opacity, transition: '0.3s', transform: `translateY(${y})`}}
-                />
+               <div style={{width: measure, height: measure, borderRadius: '5px', backgroundColor: background, transition: '0.3s'}} ></div>
         </motion.div>
     )
 }
