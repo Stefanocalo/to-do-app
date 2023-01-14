@@ -1,5 +1,4 @@
-import { useForceUpdate } from "@react-spring/shared";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { TodoFeedContainer } from "../../style";
 import { Todo } from "../Todo/Todo";
@@ -9,40 +8,49 @@ export const TodoFeed = () => {
     const todos = useSelector(state => state.todo.todolist);
     const filterTerm = useSelector(state => state.todo.filterTerm);
 
-    let x = 0; 
-    let z = 0;
+    const [completedCount, setCompletedCount] = useState(0);
+    const [incompleteCount, setIncompleteCont] = useState(0);
 
-    const getCompleted = () => {
+    useEffect(() => {
         todos?.map(todo => {
-            (todo.status === 'complete') && (x += 1);
-            return x;
+            if (filterTerm === 'all') {
+                const completed = todos.filter(todo => todo.status === 'complete').length;
+                const incomplete = todos.filter(todo => todo.status === 'incomplete').length;
+
+                setCompletedCount(completed);
+                setIncompleteCont(incomplete);
+            } else if (filterTerm !== 'all'){
+                const completed = todos.filter(todo => todo.status === 'complete' && todo.tag.toLowerCase() === filterTerm).length;
+                const incomplete = todos.filter(todo => todo.status === 'incomplete' && todo.tag.toLowerCase() === filterTerm).length;
+                setCompletedCount(completed);
+                setIncompleteCont(incomplete);
+            }
         })
-    };
-    const getIncomplete = () => {
-        todos?.map(todo => {
-            (todo.status === 'incomplete') && (z += 1);
-            return z;
-        })
-    };
-    getCompleted()
-    getIncomplete()
+    }, [todos, filterTerm])
+
 
     const renderFeed = () => {
-        if(todos?.length === 0) {
+        if(todos?.length === 0 || incompleteCount === 0) {
             return(
                 <>
-                    <h2>No tasks</h2>
-                    <p>Added tasks will be here</p>
+                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Tasks ({incompleteCount})</h2>
+                    <p style={{margin: '4rem'}}>{filterTerm === 'all' ? 'Added tasks. Add a task to start.' : 'No completed tasks under this tag'}</p>
+                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h2>
+                    {todos?.map((todo, index) => (
+                     (todo.status === 'complete' && filterTerm === todo.tag.toLowerCase()) && <Todo key={index} todo={todo} /> 
+                     ))}
+                    
+
                 </>
             )
         } else if(todos?.length > 0 && filterTerm === 'all') {
             return(
                 <>
-                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Tasks ({z})</h2>
+                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Tasks ({incompleteCount})</h2>
                     {todos?.map((todo, index) => (
                      todo.status === 'incomplete' && <Todo key={index} todo={todo}/>
                     ))}
-                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({x})</h2>
+                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h2>
                     {todos?.map((todo, index) => (
                      todo.status === 'complete' && <Todo key={index} todo={todo} /> 
                  ))}
@@ -51,11 +59,11 @@ export const TodoFeed = () => {
         } else if(todos?.length > 0 && filterTerm !== 'all') {
             return(
                 <>
-                     <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Tasks ({z})</h2>
+                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Tasks ({incompleteCount})</h2>
                     {todos?.map((todo, index) => (
                      (todo.status === 'incomplete' && filterTerm === todo.tag.toLowerCase()) && <Todo key={index} todo={todo}/>
                     ))}
-                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({x})</h2>
+                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h2>
                     {todos?.map((todo, index) => (
                      (todo.status === 'complete' && filterTerm === todo.tag.toLowerCase()) && <Todo key={index} todo={todo} /> 
                  ))}
