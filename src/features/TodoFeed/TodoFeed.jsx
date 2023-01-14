@@ -14,14 +14,14 @@ export const TodoFeed = () => {
     useEffect(() => {
         todos?.map(todo => {
             if (filterTerm === 'all') {
-                const completed = todos.filter(todo => todo.status === 'complete').length;
-                const incomplete = todos.filter(todo => todo.status === 'incomplete').length;
+                const completed = todos?.filter(todo => todo.status === 'complete').length;
+                const incomplete = todos?.filter(todo => todo.status === 'incomplete').length;
 
                 setCompletedCount(completed);
                 setIncompleteCont(incomplete);
             } else if (filterTerm !== 'all'){
-                const completed = todos.filter(todo => todo.status === 'complete' && todo.tag.toLowerCase() === filterTerm).length;
-                const incomplete = todos.filter(todo => todo.status === 'incomplete' && todo.tag.toLowerCase() === filterTerm).length;
+                const completed = todos?.filter(todo => todo.status === 'complete' && todo.tag?.toLowerCase() === filterTerm).length;
+                const incomplete = todos?.filter(todo => todo.status === 'incomplete' && todo.tag?.toLowerCase() === filterTerm).length;
                 setCompletedCount(completed);
                 setIncompleteCont(incomplete);
             }

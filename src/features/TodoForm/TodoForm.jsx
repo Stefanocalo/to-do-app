@@ -36,17 +36,16 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 if(tag.tag === todo.tag) {
                     setColor(tag.color);
                 }
-            })
-        }
-        if(type !== 'update') {
-            tags.map((element) => {
+            }) 
+        } else {
+            tags.map(element => {
                 if(element.tag === tag) {
-                   setColor(element.color);
+                    setColor(element.color);
                 }
             })
         }
-       
     }, [todo, type]);
+
 
 
 
@@ -178,7 +177,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
         if(type !== 'update') {
             setTitle('');
             setStatus('incomplete');
-            setTag('Main');
             setAddNew(false);
         } else {
             setEdit(false);
