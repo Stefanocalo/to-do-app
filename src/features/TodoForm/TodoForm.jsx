@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 // Style
 import { Modal, ModalContainer, Close, FormContainer, TaskForm, FormLabel, ButtonP, NewTag,CancelNewTag, ButtonS, theme } from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
+import { update } from "react-spring";
 
 
 export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => {
@@ -38,7 +39,16 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 }
             })
         }
-    }, [todo]);
+        if(type !== 'update') {
+            tags.map((element) => {
+                if(element.tag === tag) {
+                   setColor(element.color);
+                }
+            })
+        }
+       
+    }, [todo, tag]);
+
 
 
     const handleSubmit = (e) => {
@@ -129,7 +139,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         setAddNew(false);
                         setColor('blue');
                 } else {
-                    toast.error(`'${tag}' already exist. Choose a different name.`);
+                    toast.error(`'${tag}' already exist. Choose a different tag name.`);
                 }
                 
             } else {
@@ -214,14 +224,19 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
 
                         <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-around', margin: '2rem 0'}}>
                             <FormLabel htmlFor="tag">Tag:</FormLabel>
-                            {(!addNew && !edit) && (<><select 
+                            {(!addNew && !edit) && (<>
+                            <div style={{display: 'flex', alignItems: 'center'}}>
+                            <select 
                             style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             name="tag"
                             value={tag}
                             onChange={(e) => setTag(e.target.value)}>
-                                {tags?.length === 0 && <option>{tag}</option>}
+                                {tags?.length === 0 && <><option>{tag}</option></>}
                                 {tags?.map((element, index) => <option key={index}>{element.tag}</option>)}
                             </select>
+                            <div style={{width: '2rem', height: '2rem', backgroundColor: color, borderRadius: '5px', border: `1px solid ${theme.colors.primary}`, margin: '0.3rem', transition: '0.3s'}}></div>
+                            </div>
+                            
                             {type === 'update' && (<NewTag
                              type="button"
                              onClick={() => setEdit(!edit)}

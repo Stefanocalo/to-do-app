@@ -39,8 +39,8 @@ export const ButtonP = styled.button`
     background-color: ${(props) => props.theme.colors.buttonP};
     font-weight: 600;
     font-size: 1.1rem;
-    min-width: 6rem;
-    height: 2.5rem;
+    min-width: 8rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,8 +61,8 @@ export const ButtonAdd = styled.button`
     background-color: ${(props) => props.theme.colors.buttonP};
     font-weight: 600;
     font-size: 1.1rem;
-    min-width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@ export const NewTag = styled.button`
     font-weight: 600;
     font-size: 1.1rem;
     min-width: 2rem;
-    height: 2rem;
+    height: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +113,7 @@ export const CancelNewTag = styled.button`
     font-weight: 600;
     font-size: 1.1rem;
     min-width: 2rem;
-    height: 2rem;
+    height: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,8 +134,8 @@ export const ButtonS = styled.button`
     background-color: ${(props) => props.theme.colors.buttonS};
     font-weight: 600;
     font-size: 1.1rem;
-    min-width: 6rem;
-    height: 2.5rem;
+    min-width: 8rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,14 +156,15 @@ export const SelectionB = styled.select`
     background-color: ${(props) => props.theme.colors.buttonS};
     font-weight: 600;
     font-size: 1.1rem;
-    min-width: 6rem;
-    height: 2.5rem;
+    min-width: 8rem;
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
+    text-align: center;
     :hover {
         background-color: ${(props) => props.theme.colors.quaternary};
     }
@@ -173,12 +174,16 @@ export const SelectionB = styled.select`
 export const OptionWrapper = styled.div`
     background-color: ${(props) => props.theme.colors.tertiary};
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 0 4rem;
     align-items: center;
     padding: 2rem 0;
     position: sticky;
     top: 0;
     z-index: 99;
+    @media (max-width: 900px) {
+        margin: 0 1.5rem
+    }
 `;
 
 export const Modal = styled.div`

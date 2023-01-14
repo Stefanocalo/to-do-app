@@ -34,11 +34,21 @@ export const TodoFeed = () => {
             return(
                 <>
                     <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Tasks ({incompleteCount})</h2>
-                    <p style={{margin: '4rem'}}>{filterTerm === 'all' ? 'Added tasks. Add a task to start.' : 'No completed tasks under this tag'}</p>
+                    <p style={{margin: '4rem'}}>{filterTerm === 'all' ? 'Add a task to start.' : 'No completed tasks under this tag'}</p>
                     <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h2>
-                    {todos?.map((todo, index) => (
-                     (todo.status === 'complete' && filterTerm === todo.tag.toLowerCase()) && <Todo key={index} todo={todo} /> 
-                     ))}
+                    {todos?.map((todo, index) => {
+                        if(completedCount > 0 && filterTerm === 'all') {
+                            return  <Todo key={index} todo={todo} />
+                        } else if(completedCount > 0 && filterTerm !== 'all') {
+                           if(todo.tag.toLowerCase() === filterTerm) {
+                                return(
+                                   <Todo key={index} todo={todo} />
+                                )
+                           }
+                        }
+                    }
+                       
+                     )}
                     
 
                 </>
