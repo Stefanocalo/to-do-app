@@ -20,7 +20,8 @@ const getTag = () => {
 
 const initialState = {
     todolist: getTodoList(), 
-    tag: getTag()
+    tag: getTag(),
+    filterTerm: ''
 }
 
 const todoSlice = createSlice({
@@ -89,11 +90,14 @@ const todoSlice = createSlice({
             window.localStorage.setItem('tag', JSON.stringify(local));
             state.tag = local;
         }
+       },
+       setFilterTerm: (state, action) => {
+        state.filterTerm = action.payload;
        }
     }
 });
 
 
 
-export const {addTodo, removeTodo, updateTodo, addTag, updateTag} = todoSlice.actions;
+export const {addTodo, removeTodo, updateTodo, addTag, updateTag, setFilterTerm} = todoSlice.actions;
 export default todoSlice.reducer;

@@ -9,8 +9,8 @@ export const TodoOptions = () => {
 
     return(
         <OptionWrapper>
-            <ButtonP>Select All</ButtonP>
-            <ButtonAdd onClick={() => setForm(true)}>+</ButtonAdd>
+            <ButtonP role='button'>Select All</ButtonP>
+            <ButtonAdd role='button' onClick={() => setForm(true)}>+</ButtonAdd>
             <SelectButton />
             <TodoForm form={form} setForm={setForm}/>
         </OptionWrapper>

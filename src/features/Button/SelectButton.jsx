@@ -1,12 +1,19 @@
-import React, {useState} from "react";
-import { useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { SelectionB } from "../../style";
+import { setFilterTerm } from "../../app/todoSlice";
 
 export const SelectButton = () => {
 
     const [filter, setFilter] = useState('all');
 
     const tags = useSelector(state => state.todo.tag);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setFilterTerm(filter));
+    }, [filter])
 
     return(
         <SelectionB

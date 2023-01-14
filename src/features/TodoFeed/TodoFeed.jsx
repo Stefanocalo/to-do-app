@@ -5,7 +5,8 @@ import { Todo } from "../Todo/Todo";
 
 export const TodoFeed = () => {
 
-    const todos = useSelector(state => state.todo.todolist)
+    const todos = useSelector(state => state.todo.todolist);
+    const filterTerm = useSelector(state => state.todo.filterTearm);
 
     let x = 0; 
     let z = 0;

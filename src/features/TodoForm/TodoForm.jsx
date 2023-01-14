@@ -44,7 +44,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-       if(title.length > 0 && status && tag.length > 0) {
+        if(title.length > 0 && status && tag.length > 0) {
         if(type === 'update') { 
             let currentId;
             let currentTag;
@@ -131,6 +131,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 } else {
                     toast.error(`'${tag}' already exist. Choose a different name.`);
                 }
+                
             } else {
                 dispatch(addTodo({
                     id: uuid4(),
@@ -139,6 +140,15 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     tag,
                     date: format(new Date(), 'p, dd/MM/yyyy'),
                 }))
+
+                if(!addNew && tags.length === 0) {
+                    dispatch(addTag({
+                        tag,
+                        tagId: uuid4(),
+                        color,
+                    }))
+                    
+                } 
 
                   setForm(false);
                   setTitle('');
