@@ -76,6 +76,8 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 })
                 setEdit(false);
                 setEditForm(false);
+                toast.success('Task and tag updated succesfully!');
+
             }
             if(addNew) {
                 if (tags?.filter((element) => element.tag === tag).length === 0) {
@@ -94,15 +96,17 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     toast.error('exist');
                 }
             }
-            dispatch(updateTodo({
-                ...todo,
-                title,
-                tag,
-                status,
-            }))
+            if(type === 'update' && !edit && !addNew) {
+                dispatch(updateTodo({
+                    ...todo,
+                    title,
+                    tag,
+                    status,
+                }))
+                toast.success('Task updated correcty')
+            }
             setAddNew(false);
             setEditForm(false);
-            toast.success('Task updated succesfully!');
         } else {
             if(addNew) {
                 if (tags?.filter((element) => element.tag === tag).length === 0) {
@@ -111,6 +115,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         tagId: uuid4(),
                         color
                     }))
+                    toast.success(`New tag '${tag}' added succesfully!`);
                     dispatch(addTodo({
                         id: uuid4(),
                         title,
@@ -118,9 +123,6 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         tag,
                         date: format(new Date(), 'p, dd/MM/yyyy'),
                     }))
-                      //Show success toast and set all the variable to initial state;
-
-                        toast.success('Task added succesfully!');
                         setForm(false);
                         setTitle('');
                         setStatus('incomplete');
@@ -137,20 +139,15 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     tag,
                     date: format(new Date(), 'p, dd/MM/yyyy'),
                 }))
-                  //Show success toast and set all the variable to initial state;
 
-                  toast.success('Task added succesfully!');
                   setForm(false);
                   setTitle('');
                   setStatus('incomplete');
                   setAddNew(false);
                   setColor('blue');
-            }
-            //Show success toast and set all the variable to initial state;
-            
-        }
-
-       
+                  toast.success('Task added succesfully!');
+            }            
+        }       
        } else if (title.length === 0){
         toast.error('Please specify a title for your task.')
        } else if (tag.length === 0) {
@@ -187,7 +184,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     </Close>
                 </div>
                 <FormContainer>
-                    <h2 style={{marginBottom: '1rem'}}>{type === 'update' ? 'Update' : 'Add Task' }</h2>
+                    <h2 style={{marginBottom: '1rem'}}>{type === 'update' ? 'Update Task' : 'Add Task' }</h2>
                     <TaskForm
                     onSubmit={handleSubmit}
                     >
