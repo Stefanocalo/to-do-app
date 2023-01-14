@@ -37,14 +37,23 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     setColor(tag.color);
                 }
             }) 
-        } else {
+        } 
+    }, [todo]);
+
+    useEffect(() => {
+        if(type !== 'update') {
             tags.map(element => {
                 if(element.tag === tag) {
                     setColor(element.color);
                 }
             })
+        } 
+        if(type === 'update') {
+            tags.map(element => {
+                element.tag === tag && setColor(element.color);
+            })
         }
-    }, [todo, type]);
+    }, [tag])
 
 
 
