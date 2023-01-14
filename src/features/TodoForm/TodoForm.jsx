@@ -27,6 +27,9 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     const dispatch = useDispatch();
 
     useEffect(() => {
+
+        //If form is 'update' type then we set variables with todo values
+        //every time that todo changes
         if(type === 'update' && todo) {
             setTitle(todo.title);
             setStatus(todo.status);
@@ -41,6 +44,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     }, [todo]);
 
     useEffect(() => {
+        //Updating colors every time the form is open and tag changes
         if(type !== 'update') {
             tags.map(element => {
                 if(element.tag === tag) {
@@ -56,11 +60,12 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     }, [tag])
 
 
-
+//On Submit
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+    //If title, status and tag exists && form is 'update' type...
         if(title.length > 0 && status && tag.length > 0) {
         if(type === 'update') { 
             let currentId;
@@ -71,6 +76,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     currentTag = tag.tag;
                 }
             })
+        //If we are editing a tag update the modified tag and all todo with the same tag
             if(edit) {
                 dispatch(updateTag({
                     tagId: currentId,
@@ -96,6 +102,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 toast.success('Task and tag updated succesfully!');
 
             }
+        //If adding a new tag while on 'update' form we add the tag and update the todo
             if(addNew) {
                 if (tags?.filter((element) => element.tag === tag).length === 0) {
                     dispatch(addTag({
@@ -113,6 +120,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     toast.error('exist');
                 }
             }
+        //If we just update title, status we update the current todo
             if(type === 'update' && !edit && !addNew) {
                 dispatch(updateTodo({
                     ...todo,
@@ -124,7 +132,9 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             }
             setAddNew(false);
             setEditForm(false);
+    //If form is for new Task
         } else {
+        //Add a new tag while creating a todo
             if(addNew) {
                 if (tags?.filter((element) => element.tag === tag).length === 0) {
                     dispatch(addTag({
@@ -147,7 +157,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                 } else {
                     toast.error(`'${tag}' already exist. Choose a different tag name.`);
                 }
-                
+        //If use default 
             } else {
                 dispatch(addTodo({
                     id: uuid4(),
@@ -172,14 +182,18 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                   setAddNew(false);
                   toast.success('Task added succesfully!');
             }            
-        }       
+        } 
+        //If no task title throw error      
        } else if (title.length === 0){
         toast.error('Please specify a title for your task.')
+        //If no tag name throw error
        } else if (tag.length === 0) {
         toast.error('Please specify a title for the tag.')
        }
 
     }
+
+    //On Cancel button press
 
     const handleCancel = () => {
         type === 'update' ? setEditForm(false) : setForm(false);
