@@ -84,6 +84,12 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         tagId: uuid4(),
                         color
                     }))
+                    dispatch(updateTodo({
+                        ...todo,
+                        title,
+                        tag,
+                        status,
+                    }))
                 } else {
                     toast.error('exist');
                 }
@@ -98,30 +104,50 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             setEditForm(false);
             toast.success('Task updated succesfully!');
         } else {
-            dispatch(addTodo({
-                id: uuid4(),
-                title,
-                status,
-                tag,
-                date: format(new Date(), 'p, dd/MM/yyyy'),
-            }))
-            // Add tag if not already in the state
-            if (tags?.filter((element) => element.tag === tag).length === 0) {
-                dispatch(addTag({
+            if(addNew) {
+                if (tags?.filter((element) => element.tag === tag).length === 0) {
+                    dispatch(addTag({
+                        tag,
+                        tagId: uuid4(),
+                        color
+                    }))
+                    dispatch(addTodo({
+                        id: uuid4(),
+                        title,
+                        status,
+                        tag,
+                        date: format(new Date(), 'p, dd/MM/yyyy'),
+                    }))
+                      //Show success toast and set all the variable to initial state;
+
+                        toast.success('Task added succesfully!');
+                        setForm(false);
+                        setTitle('');
+                        setStatus('incomplete');
+                        setAddNew(false);
+                        setColor('blue');
+                } else {
+                    toast.error(`'${tag}' already exist. Choose a different name.`);
+                }
+            } else {
+                dispatch(addTodo({
+                    id: uuid4(),
+                    title,
+                    status,
                     tag,
-                    tagId: uuid4(),
-                    color
+                    date: format(new Date(), 'p, dd/MM/yyyy'),
                 }))
+                  //Show success toast and set all the variable to initial state;
+
+                  toast.success('Task added succesfully!');
+                  setForm(false);
+                  setTitle('');
+                  setStatus('incomplete');
+                  setAddNew(false);
+                  setColor('blue');
             }
-               
-            
             //Show success toast and set all the variable to initial state;
-            toast.success('Task added succesfully!');
-            setForm(false);
-            setTitle('');
-            setStatus('incomplete');
-            setAddNew(false);
-            setColor('blue');
+            
         }
 
        
