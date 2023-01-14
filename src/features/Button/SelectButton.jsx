@@ -8,6 +8,7 @@ export const SelectButton = () => {
     const [filter, setFilter] = useState('all');
 
     const tags = useSelector(state => state.todo.tag);
+    const filterTerm = useSelector(state => state.todo.filterTerm);
 
     const dispatch = useDispatch();
 
@@ -15,10 +16,15 @@ export const SelectButton = () => {
         dispatch(setFilterTerm(filter));
     }, [filter])
 
+    useEffect(() => {
+        setFilter(filterTerm);
+    }, [filterTerm])
+
     return(
         <SelectionB
         onChange={(e) => setFilter(e.target.value)}
-        id='tag'>
+        id='tag'
+        value={filter}>
             <option value='all'>All</option>
             {tags?.map((tag, index) => (
                 <option key={index} value={`${tag.tag.toLowerCase()}`}>{tag.tag}</option>
