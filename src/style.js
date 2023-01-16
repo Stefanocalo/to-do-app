@@ -367,3 +367,11 @@ export const IconsContainer = styled.div`
     }
 `;
 
+export const SettingPage = styled.div`
+    height: 40%;
+    width: 100%;
+    position:fixed;
+    bottom: 5.5rem;
+    transition: 0.3s;
+`;
+
