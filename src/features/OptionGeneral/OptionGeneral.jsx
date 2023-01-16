@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 
 import { Tag } from "../Tag.jsx/Tag";
+import { NewTagButton } from "../Tag.jsx/NewTagButton";
 
 
 
@@ -72,6 +73,7 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
                     {tags?.map((tag, index) => (
                         <Tag tag={tag} key={index}/>
                     ))}
+                    <NewTagButton />
                 </SettingPage>
 
 

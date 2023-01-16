@@ -157,7 +157,7 @@ export const SelectionB = styled.select`
     background-color: ${(props) => props.theme.colors.buttonS};
     font-weight: 600;
     font-size: 1.1rem;
-    min-width: 8rem;
+    width: 8rem;
     height: 3rem;
     display: flex;
     align-items: center;
@@ -374,6 +374,7 @@ export const SettingPage = styled.div`
     transition: 0.3s;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
     overflow: scroll;
     -ms-overflow-style: none;  

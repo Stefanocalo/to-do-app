@@ -1,57 +1,36 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+import { TagOption, TagForm, Close, FormLabel, theme, ButtonP, ButtonS } from "../../style";
 
-import { Close, Edit, theme, TagOption, TagForm, FormLabel, ButtonS, ButtonP} from "../../style";
-import './Tag.css';
+export const NewTagButton = () => {
 
-
-import {ImBin} from 'react-icons/im';
-import {MdModeEdit} from 'react-icons/md'
-
-
-export const Tag = ({tag}) => {
-
-    const [edit, setEdit] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState('');
-    const [color, setColor] = useState('');
+    const [color, setColor] = useState('blue');
 
-    useEffect(() => {
-        setTitle(tag.tag);
-        setColor(tag.color);
-    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    }
+    };
 
     const handleCancel = () => {
-        setEdit(false);
-        setTitle(tag.tag);
-        setColor(tag.color);
+        setIsOpen(false);
+        setTitle('');
+        setColor('blue');
     }
 
-    const height = edit? '17rem' : '4rem';
-
+    const height = isOpen ?  '17rem' : '4rem';
+    console.log(isOpen);
+    
 
     return(
-        <TagOption style={{height: height}} >
-
-            {!edit && <>
-            <div style={{width: '2rem', height: '2rem', backgroundColor: `${tag.color}`, borderRadius: '5px', border: `1px solid ${theme.colors.primary}`, margin: '0.3rem', transition: '0.3s'}}></div>
-            <p>{tag.tag}</p>
-            <div style={{display:'flex', alignItems: 'center'}}>
-
-                <Close 
-                    role='button'>
-                        <ImBin style={{fontSize: '1.3rem'}}/>
-                </Close>
-                <Edit 
-                    onClick={() => setEdit(true)}
-                    role='button' >
-                    <MdModeEdit style={{fontSize: '1.3rem'}}/>
-                </Edit>
-            </div> </>}
-            
-            {edit && <TagForm onSubmit={handleSubmit} >
+        <TagOption 
+        style={{height: height}}>
+            {!isOpen && <h3 
+            role='button'
+            style={{width: '100%', textAlign: 'center', cursor: 'pointer'}}
+            onClick={() => setIsOpen(true)}
+            >Add New Tag</h3>}
+            {isOpen && <TagForm onSubmit={handleSubmit} >
                 <div className="mainWrapper" >
                     <div 
                     onClick={() => handleCancel()}
@@ -99,7 +78,7 @@ export const Tag = ({tag}) => {
                     </div>
                 </div>
             </TagForm>}
-            
         </TagOption>
+            
     )
 }
