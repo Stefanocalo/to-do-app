@@ -181,7 +181,6 @@ export const OptionWrapper = styled.div`
     position: sticky;
     width: 90%;
     top: 0;
-    z-index: 99;
     @media (max-width: 900px) {
         padding: 1rem 5%;
     }
@@ -198,7 +197,6 @@ export const Modal = styled.div`
     backdrop-filter: blur(0.5rem);
     background-color: rgba(0, 0, 0, 0.5);
     transition: 0.5s;
-    z-index: 99
 `;
 
 export const ModalContainer = styled.div`
@@ -330,16 +328,14 @@ export const OptionContainer = styled.div`
 
 export const SettingContainer = styled.div`
     height: 90vh;
-    width: 100vw;
+    width: 100%;
     background-color: ${props => props.theme.colors.tertiary};
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    @media (max-width: 900px) {
-        width: 93vw;
-    }
+    
 `;
 
 export const SettingBar = styled.div`
@@ -362,6 +358,9 @@ export const IconsContainer = styled.div`
     flex-direction: column;
     transition: 0.3s;
     cursor: pointer;
+    border-radius: 15px;
+    padding: 0.5rem;
+    margin: 0.2rem 0;
     :hover {
         scale: 1.2;
     }
@@ -371,7 +370,49 @@ export const SettingPage = styled.div`
     height: 40%;
     width: 100%;
     position:fixed;
-    bottom: 5.5rem;
+    bottom: 6rem;
     transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    ::-webkit-scrollbar {
+        display: none;
+      }
+    @media (max-width: 600px) {
+        bottom: 5rem;
+    }
 `;
+
+export const TagOption = styled.div`
+    background-color: ${(props) => props.theme.colors.primary};
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    border-radius: 8px;
+    height: 4rem;
+    width: 60%;
+    justify-content: space-around;
+    @media (max-width: 900px) {
+        width: 95%;
+        margin: 0.7rem 0;
+    }
+`;
+
+export const TagPanel = styled.div`
+    height: 75vh;
+    width: 95vw;
+    background-color: ${props => props.theme.colors.tertiary};
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+`;
+
 
