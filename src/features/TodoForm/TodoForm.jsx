@@ -46,14 +46,14 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     useEffect(() => {
         //Updating colors every time the form is open and tag changes
         if(type !== 'update') {
-            tags.map(element => {
+            tags?.map(element => {
                 if(element.tag === tag) {
                     setColor(element.color);
                 }
             })
         } 
         if(type === 'update') {
-            tags.map(element => {
+            tags?.map(element => {
                 element.tag === tag && setColor(element.color);
             })
         }
@@ -149,6 +149,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         status,
                         tag,
                         date: format(new Date(), 'p, dd/MM/yyyy'),
+                        isSelected: false,
                     }))
                         setForm(false);
                         setTitle('');
@@ -165,6 +166,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     status,
                     tag,
                     date: format(new Date(), 'p, dd/MM/yyyy'),
+                    isSelected: false,
                 }))
 
                 if(!addNew && tags.length === 0) {

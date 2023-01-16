@@ -25,9 +25,9 @@ export const SelectButton = () => {
         onChange={(e) => setFilter(e.target.value)}
         id='tag'
         value={filter}>
-            <option value='all'>All</option>
+            <option value='all'>Filter: All</option>
             {tags?.map((tag, index) => (
-                <option key={index} value={`${tag.tag.toLowerCase()}`}>{tag.tag}</option>
+                <option key={index} value={`${tag.tag.toLowerCase()}`}>{`Filter: ${tag.tag}`}</option>
             ))}
             
         </SelectionB>

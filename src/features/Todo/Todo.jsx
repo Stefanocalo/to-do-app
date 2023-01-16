@@ -2,16 +2,15 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 //Dependencies
 import { toast } from "react-hot-toast";
-import { format } from "date-fns";
 import { useSpring, animated, config } from '@react-spring/web'
 import { useDrag } from "@use-gesture/react";
 //Style
-import { TodoContainer, DetailContainer, Close, Edit, theme } from "../../style";
+import { DetailContainer, Close, Edit, theme } from "../../style";
 import './Todo.css';
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md';
 //Actions
-import todoSlice, { removeTodo, updateTodo } from "../../app/todoSlice";
+import { removeTodo, updateTodo } from "../../app/todoSlice";
 //Components
 import { TodoForm } from "../TodoForm/TodoForm";
 import { CheckButton } from "../Button/CheckButton";

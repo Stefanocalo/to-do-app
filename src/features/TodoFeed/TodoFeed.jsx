@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TodoFeedContainer } from "../../style";
+import { theme, TodoFeedContainer, Close } from "../../style";
 import { Todo } from "../Todo/Todo";
 
 import { ButtonS } from "../../style";
+import { ImBin } from "react-icons/im";
 
-import { setFilterTerm } from "../../app/todoSlice";
+import { removeTodo, setFilterTerm } from "../../app/todoSlice";
+import { toast } from "react-hot-toast";
 
 export const TodoFeed = () => {
 
@@ -32,7 +34,19 @@ export const TodoFeed = () => {
                 setIncompleteCont(incomplete);
             }
         })
-    }, [todos, filterTerm])
+    }, [todos, filterTerm]);
+
+    const handleRemoveAll = () => {
+        todos?.map(todo => {
+            if(todo.status === 'complete') {
+                dispatch(removeTodo(todo.id));
+            }
+        })
+        toast('Completed tasks removed succesfully', {
+            icon: <ImBin style={{color: 'red'}} />
+        });
+        setCompletedCount(0);
+    }
 
 
     const renderFeed = () => {
@@ -49,7 +63,10 @@ export const TodoFeed = () => {
 
                     <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Tasks ({incompleteCount})</h2>
                     <p style={{margin: '4rem'}}>{filterTerm === 'all' ? 'Add a task to start.' : 'No completed tasks under this tag'}</p>
-                    <h3 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h3>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                        <h3 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h3>
+                        {completedCount > 0 && <Close role='button' onClick={() => handleRemoveAll()} style={{width: '6rem'}}>Remove All</Close>}
+                    </div>
                     {todos?.map((todo, index) => {
                         if(completedCount > 0 && filterTerm === 'all') {
                             return  <Todo key={index} todo={todo} />
@@ -74,7 +91,10 @@ export const TodoFeed = () => {
                     {todos?.map((todo, index) => (
                      todo.status === 'incomplete' && <Todo key={index} todo={todo}/>
                     ))}
-                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h2>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                        <h3 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h3>
+                        {completedCount > 0 && <Close role='button' onClick={() => handleRemoveAll()} style={{width: '6rem'}}>Remove All</Close>}
+                    </div>
                     {todos?.map((todo, index) => (
                      todo.status === 'complete' && <Todo key={index} todo={todo} /> 
                  ))}
@@ -91,7 +111,10 @@ export const TodoFeed = () => {
                     {todos?.map((todo, index) => (
                      (todo.status === 'incomplete' && filterTerm === todo.tag.toLowerCase()) && <Todo key={index} todo={todo}/>
                     ))}
-                    <h2 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h2>
+                     <div style={{display: 'flex', alignItems: 'center'}}>
+                        <h3 style={{margin: '1rem 0', fontSize: '1.6rem'}}>Completed Tasks ({completedCount})</h3>
+                        {completedCount > 0 && <Close role='button' onClick={() => handleRemoveAll()} style={{width: '6rem'}}>Remove All</Close>}
+                    </div>
                     {todos?.map((todo, index) => (
                      (todo.status === 'complete' && filterTerm === todo.tag.toLowerCase()) && <Todo key={index} todo={todo} /> 
                  ))}

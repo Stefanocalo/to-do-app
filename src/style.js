@@ -175,14 +175,14 @@ export const OptionWrapper = styled.div`
     background-color: ${(props) => props.theme.colors.tertiary};
     display: flex;
     justify-content: space-between;
-    margin: 0 4rem;
+    padding: 2rem 5%;
     align-items: center;
-    padding: 2rem 0;
     position: sticky;
+    width: 90%;
     top: 0;
     z-index: 99;
     @media (max-width: 900px) {
-        margin: 0 1.5rem
+        padding: 1rem 5%;
     }
 `;
 
@@ -294,7 +294,7 @@ export const TodoFeedContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    min-height: 80vh;
+    min-height: 90vh;
 `;
 
 export const DetailContainer = styled.div`

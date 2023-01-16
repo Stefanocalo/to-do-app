@@ -60,6 +60,7 @@ const todoSlice = createSlice({
                     todo.status = action.payload.status;
                     todo.title = action.payload.title;
                     todo.tag = action.payload.tag;
+                    todo.isSelected = action.payload.isSelected;
                 };
             window.localStorage.setItem('todolist', JSON.stringify(local));
             state.todolist = local;
