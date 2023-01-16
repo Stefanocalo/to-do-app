@@ -84,6 +84,7 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
                         <HiOutlineColorSwatch  fontSize='1.6rem'/>
                         <p>Themes</p>
                     </IconsContainer >
+                    
 
                 </SettingBar>
            </SettingContainer>

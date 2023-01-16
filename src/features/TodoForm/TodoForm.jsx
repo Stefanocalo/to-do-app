@@ -254,7 +254,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                                 {tags?.map((element, index) => <option key={index}>{element.tag}</option>)}
                             </select>
                             <div style={{width: '2rem', height: '2rem', backgroundColor: color, borderRadius: '5px', border: `1px solid ${theme.colors.primary}`, margin: '0.3rem', transition: '0.3s'}}></div>
-                            </div>
+                        </div>
                             
                             {type === 'update' && (<NewTag
                              type="button"
@@ -267,11 +267,11 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                              </>
                             )}
                             {(addNew || edit) && (<>
-                            <input 
-                                type='text' value={tag} onChange={(e) => setTag(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
-                                style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                        <input 
+                            type='text' value={tag} onChange={(e) => setTag(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
+                            style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             >
-                            </input>
+                        </input>
                             <div style={{display: 'flex', alignItems: 'center'}}>
                                 <select 
                                 style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}

@@ -367,7 +367,7 @@ export const IconsContainer = styled.div`
 `;
 
 export const SettingPage = styled.div`
-    height: 40%;
+    height: 70%;
     width: 100%;
     position:fixed;
     bottom: 6rem;
@@ -383,6 +383,7 @@ export const SettingPage = styled.div`
       }
     @media (max-width: 600px) {
         bottom: 5rem;
+        margin-bottom: 3rem;
     }
 `;
 
@@ -392,9 +393,11 @@ export const TagOption = styled.div`
     align-items: center;
     margin: 1rem 0;
     border-radius: 8px;
-    height: 4rem;
     width: 60%;
+    padding-bottom: 3rem 0;
     justify-content: space-around;
+    cursor: pointer;
+    transition: 0.3s;
     @media (max-width: 900px) {
         width: 95%;
         margin: 0.7rem 0;
@@ -415,4 +418,10 @@ export const TagPanel = styled.div`
     border-top-right-radius: 15px;
 `;
 
+export const TagForm = styled.form`
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+`;
 

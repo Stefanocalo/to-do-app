@@ -1,0 +1,11 @@
+.editWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.lableWrapper {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+}
+
