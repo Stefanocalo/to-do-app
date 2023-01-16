@@ -17,13 +17,13 @@ export const SelectAllOption = ({nSelected}) => {
          if(todo.isSelected) {
             if(status !== 'setas'){
                 if(filterTerm === 'all') {
-                   dispatch(updateTodo({
+                 todo.isSelected === true && dispatch(updateTodo({
                     ...todo,
                     status,
                     isSelected: false
                    }))
-                } else if(todo.tag.toLowerCase() === filterTerm) {
-                    dispatch(updateTodo({
+                } else if(filterTerm !== 'all' && todo.tag.toLowerCase() === filterTerm) {
+                    todo.isSelected === true && dispatch(updateTodo({
                         ...todo,
                         status,
                         isSelected: false

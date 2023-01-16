@@ -16,9 +16,7 @@ export const SelectButton = () => {
         dispatch(setFilterTerm(filter));
     }, [filter])
 
-    useEffect(() => {
-        setFilter(filterTerm);
-    }, [filterTerm])
+    
 
     return(
         <SelectionB

@@ -1,18 +1,21 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
-import { ButtonP, OptionWrapper, ButtonAdd, Close} from "../../style";
+import { ButtonP, OptionWrapper, ButtonAdd, OptionContainer} from "../../style";
 import { SelectButton } from "../Button/SelectButton";
 import { TodoForm } from "../TodoForm/TodoForm";
 import {MdPostAdd} from 'react-icons/md';
 import { useSelector } from "react-redux";
 import { updateTodo } from "../../app/todoSlice";
 import { SelectAllOption } from "../Button/SelectAllOption";
+import {FiSettings} from 'react-icons/fi';
+import { OptionGeneral } from "../OptionGeneral/OptionGeneral";
 
 export const TodoOptions = () => {
 
     const [form, setForm] = useState(false);
     const [selectAllActive, setSelectAllActive] = useState(false);
     const [nSelected,setNSelected] = useState(0);
+    const [optionActive, setOptionActive] = useState(false);
 
     const todos = useSelector(state => state.todo.todolist);
     const filterTerm = useSelector(state => state.todo.filterTerm);
@@ -27,13 +30,15 @@ export const TodoOptions = () => {
                     ...todo,
                     isSelected: actionPayload
                 }))
-            } else {
+            } else if(filterTerm !== 'all'){
                 if(todo.tag.toLowerCase() === filterTerm) {
                     dispatch(updateTodo({
                         ...todo,
                         isSelected: actionPayload
                     }))
                 }
+            } else {
+                return
             }
         })
     };
@@ -48,7 +53,6 @@ export const TodoOptions = () => {
         }
        
     },[todos])
-
     
 
     return(
@@ -58,6 +62,10 @@ export const TodoOptions = () => {
             {todos?.filter(todo => todo.isSelected).length === 0 && <SelectButton />}
             {todos?.filter(todo => todo.isSelected).length > 0 && <SelectAllOption nSelected={nSelected}/>}
             <TodoForm form={form} setForm={setForm}/>
+            <OptionContainer role='button' onClick={() => setOptionActive(true)} >
+                <FiSettings />
+            </OptionContainer >
+            <OptionGeneral optionActive={optionActive} setOptionActive={setOptionActive} />
         </OptionWrapper>
     )
 }

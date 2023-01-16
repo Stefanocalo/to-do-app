@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
+import { pureFinalPropsSelectorFactory } from "react-redux/es/connect/selectorFactory";
 
 
 export const Main = styled.div`
@@ -295,6 +296,7 @@ export const TodoFeedContainer = styled.div`
     align-items: center;
     width: 100vw;
     min-height: 90vh;
+    overflow: hidden;
 `;
 
 export const DetailContainer = styled.div`
@@ -302,5 +304,66 @@ export const DetailContainer = styled.div`
     min-width: 2rem;
     min-heght: 2rem;
     
+`;
+
+export const OptionContainer = styled.div`
+    font-size: 2rem;
+    background-color: ${props => props.theme.colors.buttonP};
+    color: ${props => theme.colors.tertiary};
+    transition: 0.3s;
+    height: 3rem;
+    width: 3rem;
+    margin-right: 0 4rem;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    :hover {
+        scale: 1.2;
+        background-color: ${(props) => props.theme.colors.buttonPhover};
+    }
+    :active {
+        scale: 1;
+    }
+`;
+
+export const SettingContainer = styled.div`
+    height: 90vh;
+    width: 100vw;
+    background-color: ${props => props.theme.colors.tertiary};
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 900px) {
+        width: 93vw;
+    }
+`;
+
+export const SettingBar = styled.div`
+    width: 100%;
+    height: 5.5rem;
+    border-top: 1px solid ${props => props.theme.colors.primary};
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+`;
+
+export const IconsContainer = styled.div`
+    width: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.3s;
+    cursor: pointer;
+    :hover {
+        scale: 1.2;
+    }
 `;
 
