@@ -19,7 +19,7 @@ export const Tag = ({tag}) => {
         setColor(tag.color);
     }, [])
 
-    const height = edit? '16rem' : '4rem'
+    const height = edit? '17rem' : '4rem';
 
 
     return(
@@ -41,38 +41,48 @@ export const Tag = ({tag}) => {
                 </Edit>
             </div> </>}
             
-            {edit && <TagForm>
-                <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
-                        <Close>X</Close>
-                </div>
-                <div className="editWrapper">
-                    <div className="lableWrapper">
-                        <FormLabel htmlFor="title">Tag title:</FormLabel>
-                        <input 
-                        style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
-                        type='text' id='title' value={title} onChange={(e) => e.target.value}></input>
+            {edit && <TagForm >
+                <div className="mainWrapper" >
+                    <div 
+                    onClick={() => setEdit(false)}
+                    style={{display: 'flex', justifyContent: 'flex-end'}}>
+                            <Close>X</Close>
                     </div>
-                    <div className="lableWrapper">
-                        <FormLabel htmlFor="tag">Color:</FormLabel>
-                        <div style={{display:'flex', alignItems: 'center'}}>
-                            <select 
-                            style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
-                            name='color' value={color} onChange={(e) => setColor(e.target.value)}>
-                                <option value='blue'>Blue</option>
-                                <option value='yellow'>Yellow</option>
-                                <option value='orange'>Orange</option>
-                                <option value='red'>Red</option>
-                                <option value='purple'>Purple</option>
-                                <option value='pink'>Pink</option>
-                                <option value='green'>Green</option>
-                            </select>
-                            <div style={{height: '2rem', width: '2rem', borderRadius: '8px', border: `1px solid ${theme.colors.primary}`, backgroundColor: `${color}`, margin: '0.2rem', transition: '0.3s'}}/>
+                    <div className="spaceAround">
+                        <div className="editWrapper">
+                            <div className="lableWrapper">
+                                <FormLabel htmlFor="title">Tag title:</FormLabel>
+                                <input 
+                                style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                                type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value)}></input>
+                            </div>
+                            <div className="lableWrapper">
+                                <FormLabel htmlFor="tag">Color:</FormLabel>
+                                <div style={{display:'flex', alignItems: 'center'}}>
+                                    <select 
+                                    style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                                    name='color' value={color} onChange={(e) => setColor(e.target.value)}>
+                                        <option value='blue'>Blue</option>
+                                        <option value='yellow'>Yellow</option>
+                                        <option value='orange'>Orange</option>
+                                        <option value='red'>Red</option>
+                                        <option value='purple'>Purple</option>
+                                        <option value='pink'>Pink</option>
+                                        <option value='green'>Green</option>
+                                    </select>
+                                    <div style={{height: '2rem', width: '2rem', borderRadius: '8px', border: `1px solid ${theme.colors.primary}`, backgroundColor: `${color}`, margin: '0.2rem', transition: '0.3s'}}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="editWrapper">
+                            <div>
+                                <ButtonP>Update</ButtonP>
+                            </div>
+                            <div>
+                                <ButtonS>Cancel</ButtonS>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <ButtonP>Update</ButtonP>
-                    <ButtonS>Cancel</ButtonS>
                 </div>
             </TagForm>}
             

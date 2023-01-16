@@ -393,7 +393,8 @@ export const TagOption = styled.div`
     align-items: center;
     margin: 1rem 0;
     border-radius: 8px;
-    width: 60%;
+    width: 80%;
+    height: 100%;
     padding-bottom: 3rem 0;
     justify-content: space-around;
     cursor: pointer;
@@ -421,6 +422,7 @@ export const TagPanel = styled.div`
 export const TagForm = styled.form`
     display: flex;
     width: 100%;
+    height: 100%;
     justify-content: space-around;
     align-items: center;
 `;

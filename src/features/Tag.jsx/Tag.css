@@ -1,11 +1,39 @@
 .editWrapper {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
 }
 
 .lableWrapper {
     display: flex;
     align-items: center;
     margin: 1rem;
+}
+
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    justify-content: space-around;
+
+}
+
+.spaceAround {
+    display: flex; 
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+@media (max-width: 600px) {
+    .lableWrapper {
+        flex-direction: column;
+        margin: 0;
+    }
+    .mainWrapper {
+        width: 100%;
+    }
 }
 
