@@ -22,7 +22,7 @@ export const CheckButton = ({todo}) => {
         setLocalTheme(currentTheme);
     }, [currentTheme]);
 
-    let theme;
+    let theme = lightTheme;
 
     const getTheme = () => {
         switch(localTheme){
@@ -50,11 +50,11 @@ export const CheckButton = ({todo}) => {
     
        const boxVariant = {
         checked: {
-            background: theme.colors.buttonS,
+            background: theme.colors.tertiary,
             transition: '0.3s'
         },
         unchecked: {
-            background: theme.colors.tertiary,
+            background: theme.colors.buttonS,
             transition: '0.3s',
         }
     };
@@ -64,7 +64,7 @@ export const CheckButton = ({todo}) => {
      
        const opacity = checked ? 1 : 0;
        const y = checked ? '0' : '3rem';
-       const background = checked ? theme.colors.buttonP : 'none';
+       const background = checked ? theme.colors.primary : theme.colors.buttonS;
        const measure = checked ? '1.4rem' : 0
        
        //<div style={{width: measure, height: measure, borderRadius: '5px', backgroundColor: background, transition: '0.3s'}} ></div>

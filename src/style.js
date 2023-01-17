@@ -31,20 +31,22 @@ export const lightTheme = {
         red: '#f2403d',
         buttonP: '#5e8df2',
         buttonPhover: '#214eb0',
-        buttonS: '#b0b0b0'
+        buttonS: '#b0b0b0',
+        text: '#f7f7f7',
     }
 };
 
 export const themeDark = {
     colors: {
-        primary: '#141414',
+        primary: '#263a63',
         secondary: '#dedede',
-        tertiary: '#263a63',
+        tertiary: '#141414',
         quaternary: '#c3cbdb',
         red: '#912624',
-        buttonP: '#0d2966',
+        buttonP: '#2b62d9',
         buttonPhover: '#063396',
-        buttonS: '#636060'
+        buttonS: '#636060',
+        text: '#f0f0f0',
     }
 };
 
@@ -63,7 +65,7 @@ export const Title = styled.p`
 `
 
 export const ButtonP = styled.button`
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.buttonP};
     font-weight: 600;
     font-size: 1.1rem;
@@ -85,7 +87,7 @@ export const ButtonP = styled.button`
 `;
 
 export const ButtonAdd = styled.button`
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.buttonP};
     font-weight: 600;
     font-size: 1.1rem;
@@ -114,7 +116,7 @@ export const ButtonAdd = styled.button`
 `;
 
 export const NewTag = styled.button`
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.buttonP};
     font-weight: 600;
     font-size: 1.1rem;
@@ -136,7 +138,7 @@ export const NewTag = styled.button`
 `;
 
 export const CancelNewTag = styled.button`
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.buttonS};
     font-weight: 600;
     font-size: 1.1rem;
@@ -158,7 +160,7 @@ export const CancelNewTag = styled.button`
 `;
 
 export const ButtonS = styled.button`
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.buttonS};
     font-weight: 600;
     font-size: 1.1rem;
@@ -180,7 +182,7 @@ export const ButtonS = styled.button`
 `;
 
 export const SelectionB = styled.select`
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.text};
     background-color: ${(props) => props.theme.colors.buttonS};
     font-weight: 600;
     font-size: 1.1rem;

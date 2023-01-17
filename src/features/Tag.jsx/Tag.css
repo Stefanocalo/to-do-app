@@ -8,7 +8,9 @@
 .lableWrapper {
     display: flex;
     align-items: center;
-    margin: 1rem;
+    justify-content: space-around;
+    min-height: 4rem;
+    min-width: 40%;
 }
 
 .mainWrapper {
@@ -23,6 +25,7 @@
 .spaceAround {
     display: flex; 
     justify-content: space-around;
+    height: 100%;
     width: 100%;
 }
 

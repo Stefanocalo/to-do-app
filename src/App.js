@@ -10,6 +10,7 @@ import { TodoOptions } from './features/TodoOptions/TodoOptions';
 
 import './index.css';
 import { useSelector } from 'react-redux';
+import { setTheme } from './app/todoSlice';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
        setLocalTheme(currentTheme);
    }, [currentTheme]);
 
-   let theme;
+   let theme = lightTheme;
 
    const getTheme = () => {
        switch(localTheme){
@@ -42,12 +43,13 @@ function App() {
 
 
   return (
+    <>
     <ThemeProvider theme={theme}>
       <Main>
         <Header/>
         <TodoOptions/>
         <TodoFeed />
-        <Toaster 
+        {theme && <Toaster 
         position='top-center'
         toastOptions={{
           style:{
@@ -57,9 +59,10 @@ function App() {
             backgroundColor: theme.colors.primary,
           }
         }}
-        />
+        />}
       </Main>
     </ThemeProvider>
+    </>
   );
 }
 

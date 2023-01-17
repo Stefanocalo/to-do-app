@@ -45,10 +45,10 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
 
     useEffect(() => {
         if(type !== 'update') {
-           tags && setTag(tags[0].tag);
+            tags && setTag(tags[0].tag);
             tags && setColor(tags[0]?.color);
         }
-    }, [])
+    }, [form])
 
     useEffect(() => {
         //Updating colors every time the form is open and tag changes
@@ -224,7 +224,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
          setLocalTheme(currentTheme);
      }, [currentTheme]);
  
-     let theme;
+     let theme = lightTheme;
  
      const getTheme = () => {
          switch(localTheme){
@@ -259,11 +259,11 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     >
                         <FormLabel htmlFor="title">Title</FormLabel>
                         <input 
-                        style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                        style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                         type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))} ></input>
                         <FormLabel htmlFor="status">Status</FormLabel>
                         <select 
-                        style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                        style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                         name="status"
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}>
@@ -276,7 +276,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                             {(!addNew && !edit) && (<>
                             <div style={{display: 'flex', alignItems: 'center'}}>
                             <select 
-                            style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                            style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             name="tag"
                             value={tag}
                             onChange={(e) => setTag(e.target.value)}>
@@ -299,12 +299,12 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                             {(addNew || edit) && (<>
                         <input 
                             type='text' value={tag} onChange={(e) => setTag(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
-                            style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                            style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             >
                         </input>
                             <div style={{display: 'flex', alignItems: 'center'}}>
                                 <select 
-                                style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                                style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem', backgroundColor: theme.colors.primary, color: theme.colors.secondary}}
                                 name='color' value={color} onChange={(e) => setColor(e.target.value)}>
                                     <option value='blue'>Blue</option>
                                     <option value='yellow'>Yellow</option>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 
-import { Modal, ModalContainer, Close, FormContainer, ButtonP, ButtonS, FormLabel } from "../../style";
+import { Modal, ModalContainer, Close, FormContainer, ButtonP, ButtonS, FormLabel, lightTheme, themeDark } from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
 import { removeTag, removeTodo, updateTodo } from "../../app/todoSlice";
 import { toast } from "react-hot-toast";
@@ -52,6 +52,28 @@ export const Warning  = ({tag, warning ,setWarning}) => {
             toast.success(`${tag.tag} deleted and ${n} task moved to ${newTag}`)
     };
 
+     //Theming
+     const [localTheme, setLocalTheme] = useState('lightTheme');
+     const currentTheme = useSelector(state => state.todo.theme);
+    
+     useEffect(() => {
+         setLocalTheme(currentTheme);
+     }, [currentTheme]);
+ 
+     let theme = lightTheme;
+ 
+     const getTheme = () => {
+         switch(localTheme){
+             case 'lightTheme':
+                 theme = lightTheme;
+             break;
+             case 'themeDark':
+                 theme = themeDark;
+             break; 
+         }
+     }
+     getTheme();
+
 
     return(
         <Modal style={{ top: 0, scale:` ${scale}`, transition: '0.3s'}}>
@@ -71,7 +93,7 @@ export const Warning  = ({tag, warning ,setWarning}) => {
                         <div style={{display: 'flex', alignItems: 'center'}}>
                             <FormLabel style={{margin:'0 1rem'}}>Move to:</FormLabel>
                             <select 
-                            style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                            style={{backgroundColor: theme.colors.tertiary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             value={newTag} onChange={(e) => setNewTag(e.target.value)}>
                                 {filteredTags?.map((element, index) => <option key={index} >{element.tag}</option>)}
                             </select>

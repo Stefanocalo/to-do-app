@@ -46,7 +46,7 @@ export const Todo = ({todo}) => {
     setLocalTheme(currentTheme);
    }, [currentTheme]);
 
-   let theme;
+   let theme = lightTheme;
 
    const getTheme = () => {
     switch(localTheme){
@@ -107,7 +107,6 @@ export const Todo = ({todo}) => {
 
 
     const color = theme.colors.primary;
-    const todoTag = todo.tag;
 
     return(
         <div className="toDoWrapper">
@@ -117,7 +116,7 @@ export const Todo = ({todo}) => {
             style={{width: x, backgroundColor: theme.colors.buttonP}}
             onClick={() => handleClick()}
             >
-                <p style={{marginLeft: '1rem', fontWeight: 600, color: theme.colors.primary}}>{todo.status === 'incomplete' ? 'Complete' : 'Undo'}</p>
+                <p style={{marginLeft: '1rem', fontWeight: 600, color: theme.colors.text}}>{todo.status === 'incomplete' ? 'Complete' : 'Undo'}</p>
             </animated.div>
             <animated.div
             style={{x, backgroundColor: color}}

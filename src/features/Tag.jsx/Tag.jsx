@@ -114,7 +114,7 @@ export const Tag = ({tag}) => {
          setLocalTheme(currentTheme);
      }, [currentTheme]);
  
-     let theme;
+     let theme = lightTheme;
  
      const getTheme = () => {
          switch(localTheme){
@@ -161,16 +161,16 @@ export const Tag = ({tag}) => {
                     <div className="spaceAround">
                         <div className="editWrapper">
                             <div className="lableWrapper">
-                                <FormLabel htmlFor="title">Tag title:</FormLabel>
+                                <FormLabel style={{margin: '1rem'}} htmlFor="title">Tag title:</FormLabel>
                                 <input 
-                                style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                                style={{backgroundColor: theme.colors.tertiary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem'}}
                                 type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value)}></input>
                             </div>
                             <div className="lableWrapper">
                                 <FormLabel htmlFor="tag">Color:</FormLabel>
                                 <div style={{display:'flex', alignItems: 'center'}}>
                                     <select 
-                                    style={{height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
+                                    style={{backgroundColor: theme.colors.tertiary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem'}}
                                     name='color' value={color} onChange={(e) => setColor(e.target.value)}>
                                         <option value='blue'>Blue</option>
                                         <option value='yellow'>Yellow</option>
