@@ -155,7 +155,7 @@ export const Tag = ({tag}) => {
                 <div className="mainWrapper" >
                     <div 
                     onClick={() => handleCancel()}
-                    style={{display: 'flex', justifyContent: 'flex-end'}}>
+                    style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center', height: '4rem'}}>
                             <Close>X</Close>
                     </div>
                     <div className="spaceAround">

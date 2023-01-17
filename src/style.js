@@ -453,8 +453,8 @@ export const TagPanel = styled.div`
 
 export const TagForm = styled.form`
     display: flex;
-    width: 100%;
     height: 100%;
+    width: 100%;
     justify-content: space-around;
     align-items: center;
 `;
