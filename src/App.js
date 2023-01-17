@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { Toaster } from 'react-hot-toast';
 
-import { theme, Main, themeDark, lightTheme } from './style';
+import { Main, themeDark, lightTheme } from './style';
 
 import { Header } from './features/Header/Header';
 import { TodoFeed } from './features/TodoFeed/TodoFeed';
@@ -14,14 +14,30 @@ import { useSelector } from 'react-redux';
 function App() {
 
 
-  const [currentTheme, setCurrentTheme] = useState('');
 
-  const currentStateTheme = useSelector(state => state.todo.theme);
+   //Theming
 
+   const [localTheme, setLocalTheme] = useState('lightTheme');
+   const currentTheme = useSelector(state => state.todo.theme);
   
-  const theming = lightTheme;
+   useEffect(() => {
+       setLocalTheme(currentTheme);
+   }, [currentTheme]);
 
-  console.log(currentStateTheme);
+   let theme;
+
+   const getTheme = () => {
+       switch(localTheme){
+           case 'lightTheme':
+               theme = lightTheme;
+           break;
+           case 'themeDark':
+               theme = themeDark;
+           break; 
+       }
+   }
+   getTheme();
+
 
 
 

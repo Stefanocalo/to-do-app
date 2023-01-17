@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {motion} from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { theme } from '../../style';
+import { lightTheme, themeDark } from '../../style';
 import { BsCheckLg } from 'react-icons/bs';
 import { updateTodo } from '../../app/todoSlice';
 
@@ -14,6 +14,27 @@ export const CheckButton = ({todo}) => {
     const [nSelected, setNSelected] = useState(0);
 
     const dispatch = useDispatch();
+
+    const [localTheme, setLocalTheme] = useState('lightTheme');
+    const currentTheme = useSelector(state => state.todo.theme);
+   
+    useEffect(() => {
+        setLocalTheme(currentTheme);
+    }, [currentTheme]);
+
+    let theme;
+
+    const getTheme = () => {
+        switch(localTheme){
+            case 'lightTheme':
+                theme = lightTheme;
+            break;
+            case 'themeDark':
+                theme = themeDark;
+            break; 
+        }
+    }
+    getTheme();
 
 
     useEffect(() => {
@@ -37,7 +58,8 @@ export const CheckButton = ({todo}) => {
             transition: '0.3s',
         }
     };
-      
+
+        
 
      
        const opacity = checked ? 1 : 0;

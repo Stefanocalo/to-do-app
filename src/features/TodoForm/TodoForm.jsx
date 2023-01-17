@@ -7,7 +7,7 @@ import format from "date-fns/format";
 import { toast } from "react-hot-toast";
 
 // Style
-import { Modal, ModalContainer, Close, FormContainer, TaskForm, FormLabel, ButtonP, NewTag,CancelNewTag, ButtonS, theme } from "../../style";
+import { Modal, ModalContainer, Close, FormContainer, TaskForm, FormLabel, ButtonP, NewTag,CancelNewTag, ButtonS, lightTheme, themeDark } from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
 
 
@@ -45,8 +45,8 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
 
     useEffect(() => {
         if(type !== 'update') {
-            setTag(tags[0].tag);
-            setColor(tags[0].color);
+           tags && setTag(tags[0].tag);
+            tags && setColor(tags[0]?.color);
         }
     }, [])
 
@@ -214,6 +214,29 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
             setEdit(false);
         }
     }
+
+     //Theming
+
+     const [localTheme, setLocalTheme] = useState('lightTheme');
+     const currentTheme = useSelector(state => state.todo.theme);
+    
+     useEffect(() => {
+         setLocalTheme(currentTheme);
+     }, [currentTheme]);
+ 
+     let theme;
+ 
+     const getTheme = () => {
+         switch(localTheme){
+             case 'lightTheme':
+                 theme = lightTheme;
+             break;
+             case 'themeDark':
+                 theme = themeDark;
+             break; 
+         }
+     }
+     getTheme();
 
     const top = form || editForm ? 0 : 1000;
     const scale = form || editForm ? 1 : 0;

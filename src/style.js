@@ -5,7 +5,8 @@ import { pureFinalPropsSelectorFactory } from "react-redux/es/connect/selectorFa
 
 export const Main = styled.div`
     color: ${(props) => props.theme.colors.secondary};
-    background-color: ${(props) => props.theme.colors.tertiary}
+    background-color: ${(props) => props.theme.colors.tertiary};
+    trnasition: 0.3s;
 `
 
 export const theme = {
@@ -36,14 +37,14 @@ export const lightTheme = {
 
 export const themeDark = {
     colors: {
-        primary: '#f7f7f7',
-        secondary: '#404040',
-        tertiary: '#d8e0f0',
-        quaternary: '#686c75',
-        red: '#f2403d',
-        buttonP: '#5e8df2',
-        buttonPhover: '#214eb0',
-        buttonS: '#b0b0b0'
+        primary: '#141414',
+        secondary: '#dedede',
+        tertiary: '#263a63',
+        quaternary: '#c3cbdb',
+        red: '#912624',
+        buttonP: '#0d2966',
+        buttonPhover: '#063396',
+        buttonS: '#636060'
     }
 };
 
@@ -361,7 +362,7 @@ export const SettingContainer = styled.div`
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    
+    transition: 0.3s;
 `;
 
 export const SettingBar = styled.div`
@@ -374,6 +375,7 @@ export const SettingBar = styled.div`
     display: flex;
     align-items:center;
     justify-content: space-around;
+    transition: 0.3s;
 `;
 
 export const IconsContainer = styled.div`
@@ -404,6 +406,7 @@ export const SettingPage = styled.div`
     align-items: center;
     overflow-y:scroll;
     overflow-x:hidden;    
+    transition: 0.3s;
     -ms-overflow-style: none;  
     scrollbar-width: none;  
     ::-webkit-scrollbar {
@@ -441,6 +444,7 @@ export const TagPanel = styled.div`
     display: flex;
     flex-direction: column;
     position: fixed;
+    transition: 0.3s;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 `;

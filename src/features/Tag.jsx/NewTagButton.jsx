@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TagOption, TagForm, Close, FormLabel, theme, ButtonP, ButtonS } from "../../style";
+import { TagOption, TagForm, Close, FormLabel,themeDark, lightTheme, ButtonP, ButtonS } from "../../style";
 
 import { addTag } from "../../app/todoSlice";
 import uuid4 from "uuid4";
@@ -49,6 +49,29 @@ export const NewTagButton = () => {
         setTitle('');
         setColor('blue');
     }
+
+    //Theming
+
+    const [localTheme, setLocalTheme] = useState('lightTheme');
+    const currentTheme = useSelector(state => state.todo.theme);
+   
+    useEffect(() => {
+        setLocalTheme(currentTheme);
+    }, [currentTheme]);
+
+    let theme;
+
+    const getTheme = () => {
+        switch(localTheme){
+            case 'lightTheme':
+                theme = lightTheme;
+            break;
+            case 'themeDark':
+                theme = themeDark;
+            break; 
+        }
+    }
+    getTheme();
 
     const height = isOpen ?  '17rem' : '4rem';
     

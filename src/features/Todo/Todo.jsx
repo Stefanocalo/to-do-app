@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useSpring, animated, config } from '@react-spring/web'
 import { useDrag } from "@use-gesture/react";
 //Style
-import { DetailContainer, Close, Edit, theme } from "../../style";
+import { DetailContainer, Close, Edit, lightTheme, themeDark } from "../../style";
 import './Todo.css';
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md';
@@ -25,6 +25,7 @@ export const Todo = ({todo}) => {
 
    const dispatch = useDispatch();
    const tags = useSelector((state) => state.todo.tag);
+   const currentTheme = useSelector(state => state.todo.theme);
 
    useEffect(() => {
     todo.status === 'complete' && setStatus('incomplete');
@@ -38,6 +39,27 @@ export const Todo = ({todo}) => {
         }
     })
    }, [todo.tag, tags])
+
+   const [localTheme, setLocalTheme] = useState('lightTheme');
+   
+   useEffect(() => {
+    setLocalTheme(currentTheme);
+   }, [currentTheme]);
+
+   let theme;
+
+   const getTheme = () => {
+    switch(localTheme){
+        case 'lightTheme':
+            theme = lightTheme;
+        break;
+        case 'themeDark':
+            theme = themeDark;
+        break; 
+    }
+   }
+   getTheme();
+
 
    // Action handlers
 
@@ -81,9 +103,7 @@ export const Todo = ({todo}) => {
     }
   )
 
-
-
-
+    
 
 
     const color = theme.colors.primary;

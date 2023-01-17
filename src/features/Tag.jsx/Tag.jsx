@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateTag, addTag, updateTodo, removeTag } from "../../app/todoSlice";
 
 
-import { Close, Edit, theme, TagOption, TagForm, FormLabel, ButtonS, ButtonP} from "../../style";
+import { Close, Edit, lightTheme, themeDark, TagOption, TagForm, FormLabel, ButtonS, ButtonP} from "../../style";
 import './Tag.css';
 
 
@@ -104,6 +104,29 @@ export const Tag = ({tag}) => {
             toast.error('At least 1 tag must exists');
         }
     }
+
+     //Theming
+
+     const [localTheme, setLocalTheme] = useState('lightTheme');
+     const currentTheme = useSelector(state => state.todo.theme);
+    
+     useEffect(() => {
+         setLocalTheme(currentTheme);
+     }, [currentTheme]);
+ 
+     let theme;
+ 
+     const getTheme = () => {
+         switch(localTheme){
+             case 'lightTheme':
+                 theme = lightTheme;
+             break;
+             case 'themeDark':
+                 theme = themeDark;
+             break; 
+         }
+     }
+     getTheme();
 
     const height = edit? '17rem' : '4rem';
 

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { Modal, SettingContainer, Close, Edit, SettingBar, IconsContainer, theme, SettingPage, TagOption} from "../../style";
+import React, { useState, useEffect } from "react";
+import { Modal, SettingContainer, Close, SettingBar, IconsContainer, lightTheme, themeDark, SettingPage} from "../../style";
 
 import {AiOutlineTags} from 'react-icons/ai';
 import {HiOutlineColorSwatch} from 'react-icons/hi';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 import { Tag } from "../Tag.jsx/Tag";
 import { NewTagButton } from "../Tag.jsx/NewTagButton";
+
+import { setTheme } from "../../app/todoSlice";
 
 
 
@@ -45,6 +47,30 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
             )
         })
     }
+
+    //Theming
+    const [localTheme, setLocalTheme] = useState('lightTheme');
+    const currentTheme = useSelector(state => state.todo.theme);
+   
+    useEffect(() => {
+        setLocalTheme(currentTheme);
+    }, [currentTheme]);
+
+    let theme;
+
+    const getTheme = () => {
+        switch(localTheme){
+            case 'lightTheme':
+                theme = lightTheme;
+            break;
+            case 'themeDark':
+                theme = themeDark;
+            break; 
+        }
+    }
+    getTheme();
+
+    const dispatch = useDispatch();
     
 
     const top = optionActive ? 0 : 1000;
@@ -64,6 +90,14 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
 
                 <SettingPage style={{right: positionTheme}}>
+                    <div
+                    onClick={() => dispatch(setTheme('themeDark'))}
+                    style={{width: '100%', height: '10rem', backgroundColor: 'white'}}>
+                    </div>
+                    <div
+                    onClick={() => dispatch(setTheme('lightTheme'))}
+                    style={{width: '100%', height: '10rem', backgroundColor: 'red'}}>
+                    </div>
                    
                 </SettingPage>
 

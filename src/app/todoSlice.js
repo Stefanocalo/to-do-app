@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Main } from "../style";
 
 const getTodoList = () => {
     const localTodoList = window.localStorage.getItem('todolist');
@@ -14,7 +15,8 @@ const getTag = () => {
     if(localTaglist) {
         return JSON.parse(localTaglist);
     } else {
-        window.localStorage.setItem('tag', JSON.stringify([]))
+        window.localStorage.setItem('tag', JSON.stringify([{tag: 'Main', color: 'blue', tagId: '9351df0a-5257-4da5-a27d-c9d0edfffe78'
+    }]))
     }
 };
 
@@ -23,7 +25,7 @@ const getTheme = () => {
     if(localTheme) {
         return JSON.parse(localTheme);
     } else {
-        window.localStorage.setItem('item', JSON.stringify(''));
+        window.localStorage.setItem('theme', JSON.stringify('lightTheme'));
     }
 }
 
@@ -31,7 +33,7 @@ const initialState = {
     todolist: getTodoList(), 
     tag: getTag(),
     filterTerm: '',
-    theme: getTheme()
+    theme: getTheme(),
 }
 
 const todoSlice = createSlice({
@@ -114,13 +116,8 @@ const todoSlice = createSlice({
        setTheme: (state, action) => {
         const theme = window.localStorage.getItem('theme');
         if(theme) {
-            const localTheme = JSON.parse(theme);
-            if(localTheme === action.payload) {
-                window.localStorage.setItem('theme', JSON.stringify(localTheme));
-            } else {
-                window.localStorage.setItem('theme', JSON.stringify(action.payload));
-                state.theme = action.payload;
-            }
+            window.localStorage.setItem('theme', JSON.stringify(action.payload));
+            state.theme = action.payload;
         }
        },
        setFilterTerm: (state, action) => {

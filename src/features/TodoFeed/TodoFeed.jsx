@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { theme, TodoFeedContainer, Close } from "../../style";
+import { TodoFeedContainer, Close } from "../../style";
 import { Todo } from "../Todo/Todo";
 
 import { ButtonS } from "../../style";
