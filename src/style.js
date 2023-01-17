@@ -21,6 +21,32 @@ export const theme = {
     }
 };
 
+export const lightTheme = {
+    colors: {
+        primary: '#f7f7f7',
+        secondary: '#404040',
+        tertiary: '#d8e0f0',
+        quaternary: '#686c75',
+        red: '#f2403d',
+        buttonP: '#5e8df2',
+        buttonPhover: '#214eb0',
+        buttonS: '#b0b0b0'
+    }
+};
+
+export const themeDark = {
+    colors: {
+        primary: '#f7f7f7',
+        secondary: '#404040',
+        tertiary: '#d8e0f0',
+        quaternary: '#686c75',
+        red: '#f2403d',
+        buttonP: '#5e8df2',
+        buttonPhover: '#214eb0',
+        buttonS: '#b0b0b0'
+    }
+};
+
 export const HeaderContainer = styled.div`
     display:flex;
     align-items: center;

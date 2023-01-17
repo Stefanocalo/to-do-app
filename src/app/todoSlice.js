@@ -18,10 +18,20 @@ const getTag = () => {
     }
 };
 
+const getTheme = () => {
+    const localTheme = window.localStorage.getItem('theme');
+    if(localTheme) {
+        return JSON.parse(localTheme);
+    } else {
+        window.localStorage.setItem('item', JSON.stringify(''));
+    }
+}
+
 const initialState = {
     todolist: getTodoList(), 
     tag: getTag(),
-    filterTerm: ''
+    filterTerm: '',
+    theme: getTheme()
 }
 
 const todoSlice = createSlice({
@@ -101,6 +111,18 @@ const todoSlice = createSlice({
             state.tag = updatedTag;
         }
        },
+       setTheme: (state, action) => {
+        const theme = window.localStorage.getItem('theme');
+        if(theme) {
+            const localTheme = JSON.parse(theme);
+            if(localTheme === action.payload) {
+                window.localStorage.setItem('theme', JSON.stringify(localTheme));
+            } else {
+                window.localStorage.setItem('theme', JSON.stringify(action.payload));
+                state.theme = action.payload;
+            }
+        }
+       },
        setFilterTerm: (state, action) => {
         state.filterTerm = action.payload;
        }
@@ -109,5 +131,5 @@ const todoSlice = createSlice({
 
 
 
-export const {addTodo, removeTodo, updateTodo, addTag, updateTag, setFilterTerm, removeTag} = todoSlice.actions;
+export const {addTodo, removeTodo, updateTodo, addTag, updateTag, setFilterTerm, removeTag, setTheme} = todoSlice.actions;
 export default todoSlice.reducer;
