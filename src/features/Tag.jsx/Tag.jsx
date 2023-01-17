@@ -24,6 +24,7 @@ export const Tag = ({tag}) => {
     const dispatch = useDispatch()
 
     const todos = useSelector(state => state.todo.todolist);
+    const tags = useSelector(state => state.todo.tag);
 
     useEffect(() => {
         setTitle(tag.tag);
@@ -87,15 +88,21 @@ export const Tag = ({tag}) => {
 
     const handleDelete = () => {
 
-        if(todos?.filter(todo => todo.tag === tag.tag).length > 0) {
-            setWarning(true);
-            console.log('there are');
+    //Check if todos with tag before deleting
+        if(tags.length > 1) {
+            if(todos?.filter(todo => todo.tag === tag.tag).length > 0) {
+            setWarning(true);    
+            
+        
+            } else {
+                dispatch(removeTag(tag.tagId));
+                toast(`${tag.tag} removed succesfully`, {
+                    icon: <ImBin style={{color: 'red'}} />
+                });
+            }  
         } else {
-            console.log('there are not');
+            toast.error('At least 1 tag must exists');
         }
-        toast(`${tag.tag} removed succesfully`, {
-            icon: <ImBin style={{color: 'red'}} />
-        });
     }
 
     const height = edit? '17rem' : '4rem';
@@ -169,7 +176,7 @@ export const Tag = ({tag}) => {
                     </div>
                 </div>
             </TagForm>}
-            {<Warning warning={warning} setWarning={setWarning}/>}
+            {<Warning tag={tag} warning={warning} setWarning={setWarning}/>}
             
         </TagOption>
     )

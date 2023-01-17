@@ -34,6 +34,10 @@ export const TodoFeed = () => {
                 setIncompleteCont(incomplete);
             }
         })
+        if(todos?.length === 0) {
+            setCompletedCount(0);
+            setIncompleteCont(0);
+        }
     }, [todos, filterTerm]);
 
     const handleRemoveAll = () => {

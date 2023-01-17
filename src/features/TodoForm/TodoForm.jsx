@@ -44,6 +44,13 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
     }, [todo]);
 
     useEffect(() => {
+        if(type !== 'update') {
+            setTag(tags[0].tag);
+            setColor(tags[0].color);
+        }
+    }, [])
+
+    useEffect(() => {
         //Updating colors every time the form is open and tag changes
         if(type !== 'update') {
             tags?.map(element => {

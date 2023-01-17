@@ -96,9 +96,9 @@ const todoSlice = createSlice({
         const localTag = window.localStorage.getItem('tag');
         if(localTag) {
             const local = JSON.parse(localTag);
-            local.filter(tag => tag.tagId !== action.payload);
-            window.localStorage.setItem('tag', JSON.stringify(local));
-            state.tag = local;
+            const updatedTag = local.filter(tag => tag.tagId !== action.payload);
+            window.localStorage.setItem('tag', JSON.stringify(updatedTag));
+            state.tag = updatedTag;
         }
        },
        setFilterTerm: (state, action) => {

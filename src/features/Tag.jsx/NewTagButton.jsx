@@ -19,10 +19,14 @@ export const NewTagButton = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+    //Check if all the variables exist
         if(title.length > 0 || color) {
+        //Check if name is not already taken
            if(tags.filter(tag => tag.tag === title).length > 0) {
+            //If so error message
             toast.error('This tag name already ecists. Choose a different one.');
            } else {
+            //Else add tag, success message and close edit
             dispatch(addTag({
                 tagId: uuid4(),
                 color,
@@ -31,11 +35,14 @@ export const NewTagButton = () => {
             toast.success(`Tag ${title} added succesfully!`);
             setIsOpen(false);
            }
+    //No valid variables && error message
         } else {
             toast.error('Provide a valid tag title.');
         }
         
     };
+
+    // Cancel handler
 
     const handleCancel = () => {
         setIsOpen(false);
