@@ -74,7 +74,9 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
                         {tags?.map((tag, index) => (
                             <Tag tag={tag} key={index}/>
                         ))}
+                        <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
                         <NewTagButton />
+                        </div>
                     </div>
                 </SettingPage>
 

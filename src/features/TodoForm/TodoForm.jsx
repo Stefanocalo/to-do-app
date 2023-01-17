@@ -117,7 +117,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         status,
                     }))
                 } else {
-                    toast.error('exist');
+                    toast.error('This tag name already ecists. Choose a different one.');
                 }
             }
         //If we just update title, status we update the current todo

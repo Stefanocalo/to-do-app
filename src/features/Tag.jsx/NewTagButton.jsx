@@ -1,5 +1,10 @@
 import React, {useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { TagOption, TagForm, Close, FormLabel, theme, ButtonP, ButtonS } from "../../style";
+
+import { addTag } from "../../app/todoSlice";
+import uuid4 from "uuid4";
+import { toast } from "react-hot-toast";
 
 export const NewTagButton = () => {
 
@@ -7,9 +12,29 @@ export const NewTagButton = () => {
     const [title, setTitle] = useState('');
     const [color, setColor] = useState('blue');
 
+    const dispatch = useDispatch();
+
+    const tags = useSelector(state => state.todo.tag);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(title.length > 0 || color) {
+           if(tags.filter(tag => tag.tag === title).length > 0) {
+            toast.error('This tag name already ecists. Choose a different one.');
+           } else {
+            dispatch(addTag({
+                tagId: uuid4(),
+                color,
+                tag: title
+            }))
+            toast.success(`Tag ${title} added succesfully!`);
+            setIsOpen(false);
+           }
+        } else {
+            toast.error('Provide a valid tag title.');
+        }
+        
     };
 
     const handleCancel = () => {
@@ -20,7 +45,6 @@ export const NewTagButton = () => {
 
     const height = isOpen ?  '17rem' : '4rem';
     
-
     return(
         <TagOption 
         style={{height: height}}>
@@ -66,7 +90,7 @@ export const NewTagButton = () => {
                             <div>
                                 <ButtonP
                                 type="submit"
-                                >Update</ButtonP>
+                                >Add tag</ButtonP>
                             </div>
                             <div>
                                 <ButtonS 

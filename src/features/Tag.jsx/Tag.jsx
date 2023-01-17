@@ -11,6 +11,7 @@ import './Tag.css';
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md'
 import { toast } from "react-hot-toast";
+import { Warning } from "./Warning";
 
 
 export const Tag = ({tag}) => {
@@ -18,6 +19,7 @@ export const Tag = ({tag}) => {
     const [edit, setEdit] = useState(false);
     const [title, setTitle] = useState('');
     const [color, setColor] = useState('');
+    const [warning, setWarning] = useState(false);
 
     const dispatch = useDispatch()
 
@@ -86,6 +88,7 @@ export const Tag = ({tag}) => {
     const handleDelete = () => {
 
         if(todos?.filter(todo => todo.tag === tag.tag).length > 0) {
+            setWarning(true);
             console.log('there are');
         } else {
             console.log('there are not');
@@ -166,6 +169,7 @@ export const Tag = ({tag}) => {
                     </div>
                 </div>
             </TagForm>}
+            {<Warning warning={warning} setWarning={setWarning}/>}
             
         </TagOption>
     )
