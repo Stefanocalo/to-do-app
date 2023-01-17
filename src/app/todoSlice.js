@@ -92,6 +92,15 @@ const todoSlice = createSlice({
             state.tag = local;
         }
        },
+       removeTag: (state, action) => {
+        const localTag = window.localStorage.getItem('tag');
+        if(localTag) {
+            const local = JSON.parse(localTag);
+            local.filter(tag => tag.tagId !== action.payload);
+            window.localStorage.setItem('tag', JSON.stringify(local));
+            state.tag = local;
+        }
+       },
        setFilterTerm: (state, action) => {
         state.filterTerm = action.payload;
        }
@@ -100,5 +109,5 @@ const todoSlice = createSlice({
 
 
 
-export const {addTodo, removeTodo, updateTodo, addTag, updateTag, setFilterTerm} = todoSlice.actions;
+export const {addTodo, removeTodo, updateTodo, addTag, updateTag, setFilterTerm, removeTag} = todoSlice.actions;
 export default todoSlice.reducer;

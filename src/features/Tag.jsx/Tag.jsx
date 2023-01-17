@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { updateTag, addTag, updateTodo } from "../../app/todoSlice";
+import { updateTag, addTag, updateTodo, removeTag } from "../../app/todoSlice";
 
 
 import { Close, Edit, theme, TagOption, TagForm, FormLabel, ButtonS, ButtonP} from "../../style";
@@ -28,20 +28,32 @@ export const Tag = ({tag}) => {
         setColor(tag.color);
     }, [])
 
+
+//Submit handler
+
     const handleSubmit = (e) => {
         e.preventDefault();
+    //Checking if anything has changed
         if(color !== tag.color || title !== tag.tag) {
+        //Checking if there is any todo with the same tag to update
             if(todos?.filter(todo => todo.tag === tag.tag).length > 0) {
                 todos?.map(todo => {
                     if(todo.tag === tag.tag) {
+                //if so update tag and todos with the tag
                         dispatch(updateTodo({
                             ...todo,
                             tag: title
-                        }))
+                        }));
+                        dispatch(updateTag({
+                            ...tag,
+                            color,
+                            tag: title,
+                        }));
                     } else {
                         return
                     }
                 })
+        //If no todo with the tag we just update the tag
             } else {
                 dispatch(updateTag({
                     ...tag,
@@ -49,24 +61,38 @@ export const Tag = ({tag}) => {
                     tag: title,
                 }))
             };
+        //Closing the edit menu and displaying the success message
             
             setEdit(false);
-            console.log('test')
             toast.success(`${tag.tag} updated correctly!`);
         } else {
+    //If no changes made we do not dispatch actions
             toast.success('No changes were made.');
             setEdit(false);
         }
     };
 
+
+//Edit handler
+
     const handleCancel = () => {
         setEdit(false);
         setTitle(tag.tag);
         setColor(tag.color);
-    }
+    };
+
+//Delete handler
 
     const handleDelete = () => {
-        console.log(`${tag.tag} has been deleted`)
+
+        if(todos?.filter(todo => todo.tag === tag.tag).length > 0) {
+            console.log('there are');
+        } else {
+            console.log('there are not');
+        }
+        toast(`${tag.tag} removed succesfully`, {
+            icon: <ImBin style={{color: 'red'}} />
+        });
     }
 
     const height = edit? '17rem' : '4rem';

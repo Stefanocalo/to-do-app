@@ -19,7 +19,6 @@ export const NewTagButton = () => {
     }
 
     const height = isOpen ?  '17rem' : '4rem';
-    console.log(isOpen);
     
 
     return(
