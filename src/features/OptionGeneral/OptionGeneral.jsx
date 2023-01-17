@@ -69,11 +69,13 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
 
                 <SettingPage style={{left: positionTag}}>
-                    {renderTags()}
-                    {tags?.map((tag, index) => (
-                        <Tag tag={tag} key={index}/>
-                    ))}
-                    <NewTagButton />
+                    <div className="overflow">
+                        {renderTags()}
+                        {tags?.map((tag, index) => (
+                            <Tag tag={tag} key={index}/>
+                        ))}
+                        <NewTagButton />
+                    </div>
                 </SettingPage>
 
 

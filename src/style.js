@@ -367,24 +367,24 @@ export const IconsContainer = styled.div`
 `;
 
 export const SettingPage = styled.div`
-    height: 70%;
+    height: 75%;
     width: 100%;
-    position:fixed;
+    position:absolute;
     bottom: 6rem;
     transition: 0.3s;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    overflow: scroll;
+    overflow-y:scroll;
+    overflow-x:hidden;    
     -ms-overflow-style: none;  
     scrollbar-width: none;  
     ::-webkit-scrollbar {
         display: none;
       }
     @media (max-width: 600px) {
-        bottom: 5rem;
-        margin-bottom: 3rem;
+        bottom: 6rem;
     }
 `;
 
@@ -392,12 +392,11 @@ export const TagOption = styled.div`
     background-color: ${(props) => props.theme.colors.primary};
     display: flex;
     align-items: center;
-    margin: 1rem 0;
+    margin: 1rem;
+    paddding: 0 1rem;
     border-radius: 8px;
     width: 80%;
-    height: 100%;
-    padding-bottom: 3rem 0;
-    justify-content: space-around;
+    justify-content: space-between;
     cursor: pointer;
     transition: 0.3s;
     @media (max-width: 900px) {

@@ -1,4 +1,8 @@
 import React, {useEffect, useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { updateTag, addTag, updateTodo } from "../../app/todoSlice";
+
 
 import { Close, Edit, theme, TagOption, TagForm, FormLabel, ButtonS, ButtonP} from "../../style";
 import './Tag.css';
@@ -6,6 +10,7 @@ import './Tag.css';
 
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md'
+import { toast } from "react-hot-toast";
 
 
 export const Tag = ({tag}) => {
@@ -14,6 +19,10 @@ export const Tag = ({tag}) => {
     const [title, setTitle] = useState('');
     const [color, setColor] = useState('');
 
+    const dispatch = useDispatch()
+
+    const todos = useSelector(state => state.todo.todolist);
+
     useEffect(() => {
         setTitle(tag.tag);
         setColor(tag.color);
@@ -21,12 +30,43 @@ export const Tag = ({tag}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    }
+        if(color !== tag.color || title !== tag.tag) {
+            if(todos?.filter(todo => todo.tag === tag.tag).length > 0) {
+                todos?.map(todo => {
+                    if(todo.tag === tag.tag) {
+                        dispatch(updateTodo({
+                            ...todo,
+                            tag: title
+                        }))
+                    } else {
+                        return
+                    }
+                })
+            } else {
+                dispatch(updateTag({
+                    ...tag,
+                    color,
+                    tag: title,
+                }))
+            };
+            
+            setEdit(false);
+            console.log('test')
+            toast.success(`${tag.tag} updated correctly!`);
+        } else {
+            toast.success('No changes were made.');
+            setEdit(false);
+        }
+    };
 
     const handleCancel = () => {
         setEdit(false);
         setTitle(tag.tag);
         setColor(tag.color);
+    }
+
+    const handleDelete = () => {
+        console.log(`${tag.tag} has been deleted`)
     }
 
     const height = edit? '17rem' : '4rem';
@@ -36,11 +76,12 @@ export const Tag = ({tag}) => {
         <TagOption style={{height: height}} >
 
             {!edit && <>
-            <div style={{width: '2rem', height: '2rem', backgroundColor: `${tag.color}`, borderRadius: '5px', border: `1px solid ${theme.colors.primary}`, margin: '0.3rem', transition: '0.3s'}}></div>
+            <div style={{width: '2rem', height: '2rem', backgroundColor: `${tag.color}`, borderRadius: '5px', border: `1px solid ${theme.colors.primary}`, margin: '1rem', transition: '0.3s'}}></div>
             <p>{tag.tag}</p>
-            <div style={{display:'flex', alignItems: 'center'}}>
+            <div style={{display:'flex', alignItems: 'center', justifyContent: 'space-around'}}>
 
                 <Close 
+                    onClick={() => handleDelete()}
                     role='button'>
                         <ImBin style={{fontSize: '1.3rem'}}/>
                 </Close>
