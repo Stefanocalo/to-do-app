@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, SettingContainer, Close, SettingBar, IconsContainer, lightTheme, themeDark, SettingPage} from "../../style";
+import { Modal, SettingContainer, Close, SettingBar, IconsContainer,lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple , SettingPage} from "../../style";
 
 import {AiOutlineTags} from 'react-icons/ai';
 import {HiOutlineColorSwatch} from 'react-icons/hi';
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Tag } from "../Tag.jsx/Tag";
 import { NewTagButton } from "../Tag.jsx/NewTagButton";
+import { Theme } from "../Theme/Theme";
 
 import { setTheme } from "../../app/todoSlice";
 
@@ -49,29 +50,44 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
     }
 
     //Theming
-    const [localTheme, setLocalTheme] = useState('lightTheme');
+    const [localTheme, setLocalTheme] = useState('lightBlue');
     const currentTheme = useSelector(state => state.todo.theme);
    
     useEffect(() => {
         setLocalTheme(currentTheme);
     }, [currentTheme]);
 
-    let theme = lightTheme;
+    let theme = lightBlue;
 
     const getTheme = () => {
         switch(localTheme){
-            case 'lightTheme':
-                theme = lightTheme;
+            case 'lightBlue':
+                theme = lightBlue;
             break;
-            case 'themeDark':
-                theme = themeDark;
+            case lightGreen:
+               theme = lightGreen;
+             break;
+             case lightPurple:
+               theme = lightPurple;
+             break;
+             case lightRed:
+               theme = lightRed;
+             break;
+            case 'darkBlue':
+                theme = darkBlue;
             break; 
+            case darkGreen:
+             theme = darkGreen;
+           break;
+           case darkPurple:
+             theme = darkPurple;
+           break;
+           case darkRed:
+             theme = darkRed;
+           break;
         }
     }
-    getTheme();
-
-    const dispatch = useDispatch();
-    
+    getTheme();    
 
     const top = optionActive ? 0 : 1000;
     const opacity = optionActive ? 1 : 0
@@ -90,15 +106,16 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
 
                 <SettingPage style={{right: positionTheme}}>
-                    <div
-                    onClick={() => dispatch(setTheme('themeDark'))}
-                    style={{width: '100%', height: '10rem', backgroundColor: 'white'}}>
+                    <div className="overflow">
+                        <Theme actualTheme={lightBlue} naming={'Light Blue'}/>
+                        <Theme actualTheme={lightGreen} naming={'Light Green'}/>
+                        <Theme actualTheme={lightPurple} naming={'Light Purple'}/>
+                        <Theme actualTheme={lightRed} naming={'Light Red'}/>
+                        <Theme actualTheme={darkBlue} naming={'Dark Blue'}/>
+                        <Theme actualTheme={darkGreen} naming={'Dark Green'}/>
+                        <Theme actualTheme={darkPurple} naming={'Dark Purple'}/>
+                        <Theme actualTheme={darkRed} naming={'Dark Red'}/>
                     </div>
-                    <div
-                    onClick={() => dispatch(setTheme('lightTheme'))}
-                    style={{width: '100%', height: '10rem', backgroundColor: 'red'}}>
-                    </div>
-                   
                 </SettingPage>
 
 

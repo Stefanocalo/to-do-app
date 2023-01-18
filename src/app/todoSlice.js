@@ -25,7 +25,7 @@ const getTheme = () => {
     if(localTheme) {
         return JSON.parse(localTheme);
     } else {
-        window.localStorage.setItem('theme', JSON.stringify('lightTheme'));
+        window.localStorage.setItem('theme', JSON.stringify('lightBlue'));
     }
 }
 

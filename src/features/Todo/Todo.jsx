@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useSpring, animated, config } from '@react-spring/web'
 import { useDrag } from "@use-gesture/react";
 //Style
-import { DetailContainer, Close, Edit, lightTheme, themeDark } from "../../style";
+import { DetailContainer, Close, Edit,lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple } from "../../style";
 import './Todo.css';
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md';
@@ -40,24 +40,42 @@ export const Todo = ({todo}) => {
     })
    }, [todo.tag, tags])
 
-   const [localTheme, setLocalTheme] = useState('lightTheme');
+   const [localTheme, setLocalTheme] = useState('lightBlue');
    
    useEffect(() => {
     setLocalTheme(currentTheme);
    }, [currentTheme]);
 
-   let theme = lightTheme;
+   let theme = lightBlue;
 
    const getTheme = () => {
     switch(localTheme){
-        case 'lightTheme':
-            theme = lightTheme;
+        case 'lightBlue':
+            theme = lightBlue;
         break;
-        case 'themeDark':
-            theme = themeDark;
+        case 'lightGreen':
+           theme = lightGreen;
+         break;
+         case 'lightPurple':
+           theme = lightPurple;
+         break;
+         case 'lightRed':
+           theme = lightRed;
+         break;
+        case 'darkBlue':
+            theme = darkBlue;
         break; 
+        case 'darkGreen':
+         theme = darkGreen;
+       break;
+       case 'darkPurple':
+         theme = darkPurple;
+       break;
+       case 'darkRed':
+         theme = darkRed;
+       break;
     }
-   }
+}
    getTheme();
 
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 
-import { Modal, ModalContainer, Close, FormContainer, ButtonP, ButtonS, FormLabel, lightTheme, themeDark } from "../../style";
+import { Modal, ModalContainer, Close, FormContainer, ButtonP, ButtonS, FormLabel, lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple  } from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
 import { removeTag, removeTodo, updateTodo } from "../../app/todoSlice";
 import { toast } from "react-hot-toast";
@@ -53,25 +53,43 @@ export const Warning  = ({tag, warning ,setWarning}) => {
     };
 
      //Theming
-     const [localTheme, setLocalTheme] = useState('lightTheme');
+     const [localTheme, setLocalTheme] = useState('lightBlue');
      const currentTheme = useSelector(state => state.todo.theme);
     
      useEffect(() => {
          setLocalTheme(currentTheme);
      }, [currentTheme]);
  
-     let theme = lightTheme;
+     let theme = lightBlue;
  
      const getTheme = () => {
-         switch(localTheme){
-             case 'lightTheme':
-                 theme = lightTheme;
+        switch(localTheme){
+            case 'lightBlue':
+                theme = lightBlue;
+            break;
+            case lightGreen:
+               theme = lightGreen;
              break;
-             case 'themeDark':
-                 theme = themeDark;
-             break; 
-         }
-     }
+             case lightPurple:
+               theme = lightPurple;
+             break;
+             case lightRed:
+               theme = lightRed;
+             break;
+            case 'darkBlue':
+                theme = darkBlue;
+            break; 
+            case darkGreen:
+             theme = darkGreen;
+           break;
+           case darkPurple:
+             theme = darkPurple;
+           break;
+           case darkRed:
+             theme = darkRed;
+           break;
+        }
+    }
      getTheme();
 
 

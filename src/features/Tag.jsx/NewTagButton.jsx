@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TagOption, TagForm, Close, FormLabel,themeDark, lightTheme, ButtonP, ButtonS } from "../../style";
+import { TagOption, TagForm, Close, FormLabel,lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple , ButtonP, ButtonS } from "../../style";
 
 import { addTag } from "../../app/todoSlice";
 import uuid4 from "uuid4";
@@ -52,23 +52,40 @@ export const NewTagButton = () => {
 
     //Theming
 
-    const [localTheme, setLocalTheme] = useState('lightTheme');
+    const [localTheme, setLocalTheme] = useState('lightBlue');
     const currentTheme = useSelector(state => state.todo.theme);
    
     useEffect(() => {
         setLocalTheme(currentTheme);
     }, [currentTheme]);
 
-    let theme = lightTheme;
-
+    let theme = lightBlue;
     const getTheme = () => {
         switch(localTheme){
-            case 'lightTheme':
-                theme = lightTheme;
+            case 'lightBlue':
+                theme = lightBlue;
             break;
-            case 'themeDark':
-                theme = themeDark;
+            case lightGreen:
+               theme = lightGreen;
+             break;
+             case lightPurple:
+               theme = lightPurple;
+             break;
+             case lightRed:
+               theme = lightRed;
+             break;
+            case 'darkBlue':
+                theme = darkBlue;
             break; 
+            case darkGreen:
+             theme = darkGreen;
+           break;
+           case darkPurple:
+             theme = darkPurple;
+           break;
+           case darkRed:
+             theme = darkRed;
+           break;
         }
     }
     getTheme();
@@ -96,7 +113,7 @@ export const NewTagButton = () => {
                                 <FormLabel  htmlFor="title">Tag title:</FormLabel>
                                 <input 
                                 style={{backgroundColor: theme.colors.tertiary, color: theme.colors.secondary,height: '2rem', borderRadius: '8px', fontSize: '1rem', margin: '0 1rem'}}
-                                type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value)}></input>
+                                type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}></input>
                             </div>
                             <div className="lableWrapper">
                                 <FormLabel htmlFor="tag">Color:</FormLabel>

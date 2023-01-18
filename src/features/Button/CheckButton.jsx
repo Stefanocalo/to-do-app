@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {motion} from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { lightTheme, themeDark } from '../../style';
+import {lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple } from '../../style';
 import { BsCheckLg } from 'react-icons/bs';
 import { updateTodo } from '../../app/todoSlice';
 
@@ -15,23 +15,41 @@ export const CheckButton = ({todo}) => {
 
     const dispatch = useDispatch();
 
-    const [localTheme, setLocalTheme] = useState('lightTheme');
+    const [localTheme, setLocalTheme] = useState('lightBlue');
     const currentTheme = useSelector(state => state.todo.theme);
    
     useEffect(() => {
         setLocalTheme(currentTheme);
     }, [currentTheme]);
 
-    let theme = lightTheme;
+    let theme = lightBlue;
 
     const getTheme = () => {
         switch(localTheme){
-            case 'lightTheme':
-                theme = lightTheme;
+            case 'lightBlue':
+                theme = lightBlue;
             break;
-            case 'themeDark':
-                theme = themeDark;
+            case 'lightGreen':
+               theme = lightGreen;
+             break;
+             case 'lightPurple':
+               theme = lightPurple;
+             break;
+             case 'lightRed':
+               theme = lightRed;
+             break;
+            case 'darkBlue':
+                theme = darkBlue;
             break; 
+            case 'darkGreen':
+             theme = darkGreen;
+           break;
+           case 'darkPurple':
+             theme = darkPurple;
+           break;
+           case 'darkRed':
+             theme = darkRed;
+           break;
         }
     }
     getTheme();

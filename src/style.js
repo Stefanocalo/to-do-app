@@ -9,6 +9,8 @@ export const Main = styled.div`
     trnasition: 0.3s;
 `
 
+//Themes
+
 export const theme = {
     colors: {
         primary: '#f7f7f7',
@@ -22,7 +24,23 @@ export const theme = {
     }
 };
 
-export const lightTheme = {
+//Light themes
+
+export const lightGreen = {
+    colors: {
+        primary: '#f7f7f7',
+        secondary: '#404040',
+        tertiary: '#d8f0e7',
+        quaternary: '#686c75',
+        red: '#f2403d',
+        buttonP: '#7b9c6a',
+        buttonPhover: '#215e1f',
+        buttonS: '#b0b0b0',
+        text: '#f7f7f7',
+    }
+};
+
+export const lightBlue = {
     colors: {
         primary: '#f7f7f7',
         secondary: '#404040',
@@ -36,7 +54,38 @@ export const lightTheme = {
     }
 };
 
-export const themeDark = {
+export const lightRed = {
+    colors: {
+        primary: '#f7f7f7',
+        secondary: '#404040',
+        tertiary: '#f0dcd8',
+        quaternary: '#686c75',
+        red: '#f2403d',
+        buttonP: '#f2685e',
+        buttonPhover: '#b03221',
+        buttonS: '#b0b0b0',
+        text: '#f7f7f7',
+    }
+};
+
+export const lightPurple = {
+    colors: {
+        primary: '#f7f7f7',
+        secondary: '#404040',
+        tertiary: '#e7d8f0',
+        quaternary: '#686c75',
+        red: '#f2403d',
+        buttonP: '#d75ef2',
+        buttonPhover: '#9321b0',
+        buttonS: '#b0b0b0',
+        text: '#f7f7f7',
+    }
+};
+
+
+//Dark Themes
+
+export const darkBlue = {
     colors: {
         primary: '#263a63',
         secondary: '#dedede',
@@ -49,6 +98,49 @@ export const themeDark = {
         text: '#f0f0f0',
     }
 };
+
+export const darkGreen = {
+    colors: {
+        primary: '#26633a',
+        secondary: '#dedede',
+        tertiary: '#141414',
+        quaternary: '#c3cbdb',
+        red: '#912624',
+        buttonP: '#368051',
+        buttonPhover: '#045214',
+        buttonS: '#636060',
+        text: '#f0f0f0',
+    }
+};
+
+export const darkRed = {
+    colors: {
+        primary: '#4d2e29',
+        secondary: '#dedede',
+        tertiary: '#141414',
+        quaternary: '#c3cbdb',
+        red: '#912624',
+        buttonP: '#8a1d1c',
+        buttonPhover: '#6b1409',
+        buttonS: '#636060',
+        text: '#f0f0f0',
+    }
+};
+
+export const darkPurple = {
+    colors: {
+        primary: '#482663',
+        secondary: '#dedede',
+        tertiary: '#141414',
+        quaternary: '#c3cbdb',
+        red: '#912624',
+        buttonP: '#932bd9',
+        buttonPhover: '#770696',
+        buttonS: '#636060',
+        text: '#f0f0f0',
+    }
+};
+
 
 export const HeaderContainer = styled.div`
     display:flex;
@@ -457,5 +549,36 @@ export const TagForm = styled.form`
     width: 100%;
     justify-content: space-around;
     align-items: center;
+`;
+export const ThemeSquare=styled.div`
+    height: 3rem;
+    width: 3rem;
+    @media (max-width: 900px) {
+        height: 2rem;
+        width: 2rem;
+    }
+`;
+
+export const FirstThemeSquare=styled.div`
+    height: 3rem;
+    width: 3rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    @media (max-width: 900px) {
+        height: 2rem;
+        width: 2rem;
+    }
+
+`;
+export const LastThemeSquare=styled.div`
+    height: 3rem;
+    width: 3rem;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    @media (max-width: 900px) {
+        height: 2rem;
+        width: 2rem;
+    }
+
 `;
 
