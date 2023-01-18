@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Main } from "../style";
+
+//Checking local storage befre initializzation.
+//If no data present --> create
+
 
 const getTodoList = () => {
     const localTodoList = window.localStorage.getItem('todolist');
@@ -29,6 +32,7 @@ const getTheme = () => {
     }
 }
 
+//Initial state
 const initialState = {
     todolist: getTodoList(), 
     tag: getTag(),
@@ -128,5 +132,13 @@ const todoSlice = createSlice({
 
 
 
-export const {addTodo, removeTodo, updateTodo, addTag, updateTag, setFilterTerm, removeTag, setTheme} = todoSlice.actions;
+export const {addTodo,
+    removeTodo,
+    updateTodo,
+    addTag,
+    updateTag,
+    setFilterTerm,
+    removeTag,
+    setTheme
+} = todoSlice.actions;
 export default todoSlice.reducer;

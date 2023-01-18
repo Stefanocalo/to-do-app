@@ -1,12 +1,30 @@
 import React, {useEffect, useState} from "react"; 
 import { useDispatch, useSelector } from "react-redux";
 
-
-import { Modal, ModalContainer, Close, FormContainer, ButtonP, ButtonS, FormLabel, lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple  } from "../../style";
+//Style
+import { Modal,
+    ModalContainer,
+    Close,
+    FormContainer,
+    ButtonP,
+    ButtonS,
+    FormLabel,
+    lightBlue,
+    lightGreen,
+    lightRed,
+    lightPurple,
+    darkBlue,
+    darkRed,
+    darkGreen,
+    darkPurple
+} from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
-import { removeTag, removeTodo, updateTodo } from "../../app/todoSlice";
 import { toast } from "react-hot-toast";
 import { ImBin } from "react-icons/im";
+
+//Actions
+import { removeTag, removeTodo, updateTodo } from "../../app/todoSlice";
+
 
 export const Warning  = ({tag, warning ,setWarning}) => {
 
@@ -24,6 +42,9 @@ export const Warning  = ({tag, warning ,setWarning}) => {
 
     const scale = warning ? 1 : 0;
 
+//Event handlers
+
+    //Delete tag
     const handleDelete = () => {
         const n = todos?.filter(todo => todo.tag === tag.tag).length;
         todos?.map(todo => {
@@ -37,6 +58,7 @@ export const Warning  = ({tag, warning ,setWarning}) => {
 
     };
 
+    //Moving todos before removing a tag that cointains them
     const handleMove = () => {
             const n = todos?.filter(todo => todo.tag === tag.tag).length;
             todos?.map(todo => {

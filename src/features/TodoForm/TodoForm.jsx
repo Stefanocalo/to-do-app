@@ -1,14 +1,35 @@
 import React, {useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, updateTodo, addTag, updateTag } from "../../app/todoSlice";
 import uuid4 from "uuid4";
 import format from "date-fns/format";
 import { toast } from "react-hot-toast";
 
 // Style
-import { Modal, ModalContainer, Close, FormContainer, TaskForm, FormLabel, ButtonP, NewTag,CancelNewTag, ButtonS, lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple } from "../../style";
+import { Modal,
+    ModalContainer,
+    Close,
+    FormContainer,
+    TaskForm,
+    FormLabel,
+    ButtonP,
+    NewTag,
+    CancelNewTag,
+    ButtonS,
+    lightBlue,
+    lightGreen,
+    lightRed,
+    lightPurple,
+    darkBlue,
+    darkRed,
+    darkGreen,
+    darkPurple
+} from "../../style";
 import {MdOutlineClose} from 'react-icons/md';
+
+//Actions
+import { addTodo, updateTodo, addTag, updateTag } from "../../app/todoSlice";
+
 
 
 export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => {

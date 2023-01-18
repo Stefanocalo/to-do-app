@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SelectionB } from "../../style";
-import { updateTodo } from "../../app/todoSlice";
 import { toast } from "react-hot-toast";
+
+//Style
+import { SelectionB } from "../../style";
+
+//Actions
+import { updateTodo } from "../../app/todoSlice";
 
 export const SelectAllOption = ({nSelected}) => {
 
@@ -12,6 +16,8 @@ export const SelectAllOption = ({nSelected}) => {
     const filterTerm = useSelector(state => state.todo.filterTerm);
     const dispatch = useDispatch();
 
+
+//Updating only filtered todos if filter is active
     useEffect(() => {
         todos?.map(todo => {
          if(todo.isSelected) {

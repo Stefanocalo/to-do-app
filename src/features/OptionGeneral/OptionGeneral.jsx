@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Modal, SettingContainer, Close, SettingBar, IconsContainer,lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple , SettingPage} from "../../style";
+
+//Style
+import { Modal,
+    SettingContainer,
+    Close, SettingBar,
+    IconsContainer,lightBlue,
+    lightGreen,
+    lightRed,
+    lightPurple,
+    darkBlue, darkRed,
+    darkGreen,
+    darkPurple , 
+    SettingPage} from "../../style";
 
 import {AiOutlineTags} from 'react-icons/ai';
 import {HiOutlineColorSwatch} from 'react-icons/hi';
 import { useSelector } from "react-redux";
 
-
+//Components
 import { Tag } from "../Tag/Tag";
 import { NewTagButton } from "../Tag/NewTagButton";
-import { Theme } from "../Theme/Theme";
+import { ThemeLight } from "../Theme/ThemeLight";
+import { ThemeDark } from "../Theme/ThemeDark";
 
 export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
@@ -16,6 +29,8 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
     const [tagTab, setTagTab] = useState(true);
 
     const tags = useSelector(state => state.todo.tag);
+
+//Event handlers
 
     const handleThemesClick = () => {
         if(!themesTab){
@@ -84,6 +99,8 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
     }
     getTheme();    
 
+    //Variables
+
     const top = optionActive ? 0 : 4000;
     const opacity = optionActive ? 1 : 0
     const colorTheme = themesTab ? theme.colors.buttonP : theme.colors.secondary;
@@ -102,14 +119,14 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
                 <SettingPage style={{right: positionTheme}}>
                     <div className="overflow">
-                        <Theme actualTheme={lightBlue} naming={'Light Blue'}/>
-                        <Theme actualTheme={lightGreen} naming={'Light Green'}/>
-                        <Theme actualTheme={lightPurple} naming={'Light Purple'}/>
-                        <Theme actualTheme={lightRed} naming={'Light Red'}/>
-                        <Theme actualTheme={darkBlue} naming={'Dark Blue'}/>
-                        <Theme actualTheme={darkGreen} naming={'Dark Green'}/>
-                        <Theme actualTheme={darkPurple} naming={'Dark Purple'}/>
-                        <Theme actualTheme={darkRed} naming={'Dark Red'}/>
+                        <ThemeLight actualTheme={lightBlue} naming={'Light Blue'}/>
+                        <ThemeLight actualTheme={lightGreen} naming={'Light Green'}/>
+                        <ThemeLight actualTheme={lightPurple} naming={'Light Purple'}/>
+                        <ThemeLight actualTheme={lightRed} naming={'Light Red'}/>
+                        <ThemeDark actualTheme={darkBlue} naming={'Dark Blue'}/>
+                        <ThemeDark actualTheme={darkGreen} naming={'Dark Green'}/>
+                        <ThemeDark actualTheme={darkPurple} naming={'Dark Purple'}/>
+                        <ThemeDark actualTheme={darkRed} naming={'Dark Red'}/>
                     </div>
                 </SettingPage>
 

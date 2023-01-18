@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TodoFeedContainer, Close } from "../../style";
-import { Todo } from "../Todo/Todo";
 
-import { ButtonS } from "../../style";
+//Components
+import { Todo } from "../Todo/Todo";
+import { toast } from "react-hot-toast";
+
+//Style
+import { ButtonS, TodoFeedContainer, Close } from "../../style";
 import { ImBin } from "react-icons/im";
 
+//Actions
 import { removeTodo, setFilterTerm } from "../../app/todoSlice";
-import { toast } from "react-hot-toast";
 
 export const TodoFeed = () => {
 
@@ -19,6 +22,7 @@ export const TodoFeed = () => {
 
     const dispatch = useDispatch();
 
+//Updating complete and incomplete counts based on filters
     useEffect(() => {
         todos?.map(todo => {
             if (filterTerm === 'all') {
@@ -52,7 +56,7 @@ export const TodoFeed = () => {
         setCompletedCount(0);
     }
 
-
+//Render helper function
     const renderFeed = () => {
         if(todos?.length === 0 || incompleteCount === 0) {
             return(

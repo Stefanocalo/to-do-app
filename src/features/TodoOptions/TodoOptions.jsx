@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+//Style
 import { ButtonP, OptionWrapper, ButtonAdd, OptionContainer} from "../../style";
+import {MdPostAdd} from 'react-icons/md';
+import {FiSettings} from 'react-icons/fi';
+
+//Components
 import { SelectButton } from "../Button/SelectButton";
 import { TodoForm } from "../TodoForm/TodoForm";
-import {MdPostAdd} from 'react-icons/md';
-import { useSelector } from "react-redux";
-import { updateTodo } from "../../app/todoSlice";
 import { SelectAllOption } from "../Button/SelectAllOption";
-import {FiSettings} from 'react-icons/fi';
 import { OptionGeneral } from "../OptionGeneral/OptionGeneral";
+
+//Actions
+import { updateTodo } from "../../app/todoSlice";
 
 export const TodoOptions = () => {
 
@@ -21,6 +26,8 @@ export const TodoOptions = () => {
     const filterTerm = useSelector(state => state.todo.filterTerm);
     const dispatch = useDispatch();
 
+
+//Event handler
     const handleSelectAll = () => {
         todos?.map(todo => {
             const actionPayload = todos?.filter(todo => todo.isSelected).length > 0 ? false : true;

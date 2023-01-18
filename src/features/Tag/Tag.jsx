@@ -1,17 +1,38 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
-import { updateTag, addTag, updateTodo, removeTag } from "../../app/todoSlice";
 
+//Style
 
-import { Close, Edit, lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple , TagOption, TagForm, FormLabel, ButtonS, ButtonP} from "../../style";
+import { Close, 
+    Edit,
+    lightBlue,
+    lightGreen,
+    lightRed,
+    lightPurple,
+    darkBlue,
+    darkRed,
+    darkGreen,
+    darkPurple,
+    TagOption,
+    TagForm,
+    FormLabel,
+    ButtonS,
+    ButtonP
+} from "../../style";
 import './Tag.css';
-
-
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md'
-import { toast } from "react-hot-toast";
+
+//Components
 import { Warning } from "./Warning";
+//Actions
+import { updateTag,
+    updateTodo,
+    removeTag
+} from "../../app/todoSlice";
+
 
 
 export const Tag = ({tag}) => {

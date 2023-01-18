@@ -2,8 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {motion} from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple } from '../../style';
+//Style
+import {lightBlue,
+    lightGreen,
+    lightRed,
+    lightPurple,
+    darkBlue,
+    darkRed,
+    darkGreen,
+    darkPurple
+} from '../../style';
 import { BsCheckLg } from 'react-icons/bs';
+
+//Actions
 import { updateTodo } from '../../app/todoSlice';
 
 
@@ -11,13 +22,14 @@ import { updateTodo } from '../../app/todoSlice';
 export const CheckButton = ({todo}) => {
 
     const [checked, setChecked] = useState(false);
-    const [nSelected, setNSelected] = useState(0);
 
     const dispatch = useDispatch();
 
     const [localTheme, setLocalTheme] = useState('lightBlue');
     const currentTheme = useSelector(state => state.todo.theme);
    
+
+    //Theming
     useEffect(() => {
         setLocalTheme(currentTheme);
     }, [currentTheme]);
@@ -78,14 +90,10 @@ export const CheckButton = ({todo}) => {
     };
 
         
-
+//Variables
      
        const opacity = checked ? 1 : 0;
        const y = checked ? '0' : '3rem';
-       const background = checked ? theme.colors.primary : theme.colors.buttonS;
-       const measure = checked ? '1.4rem' : 0
-       
-       //<div style={{width: measure, height: measure, borderRadius: '5px', backgroundColor: background, transition: '0.3s'}} ></div>
 
     return(
         <motion.div

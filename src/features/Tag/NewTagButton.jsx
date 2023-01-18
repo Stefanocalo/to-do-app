@@ -1,10 +1,28 @@
 import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TagOption, TagForm, Close, FormLabel,lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple , ButtonP, ButtonS } from "../../style";
-
-import { addTag } from "../../app/todoSlice";
 import uuid4 from "uuid4";
 import { toast } from "react-hot-toast";
+
+//Style
+import { TagOption,
+    TagForm,
+    Close,
+    FormLabel,
+    lightBlue,
+    lightGreen,
+    lightRed,
+    lightPurple,
+    darkBlue,
+    darkRed,
+    darkGreen,
+    darkPurple,
+    ButtonP,
+    ButtonS
+} from "../../style";
+
+//Actions
+import { addTag } from "../../app/todoSlice";
+
 
 export const NewTagButton = () => {
 

@@ -1,16 +1,29 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-//Dependencies
 import { toast } from "react-hot-toast";
 import { useSpring, animated, config } from '@react-spring/web'
 import { useDrag } from "@use-gesture/react";
+
 //Style
-import { DetailContainer, Close, Edit,lightBlue, lightGreen, lightRed, lightPurple, darkBlue, darkRed, darkGreen, darkPurple } from "../../style";
+import { DetailContainer,
+    Close,
+    Edit,
+    lightBlue,
+    lightGreen,
+    lightRed,
+    lightPurple,
+    darkBlue,
+    darkRed,
+    darkGreen,
+    darkPurple
+} from "../../style";
 import './Todo.css';
 import {ImBin} from 'react-icons/im';
 import {MdModeEdit} from 'react-icons/md';
+
 //Actions
 import { removeTodo, updateTodo } from "../../app/todoSlice";
+
 //Components
 import { TodoForm } from "../TodoForm/TodoForm";
 import { CheckButton } from "../Button/CheckButton";
@@ -27,11 +40,13 @@ export const Todo = ({todo}) => {
    const tags = useSelector((state) => state.todo.tag);
    const currentTheme = useSelector(state => state.todo.theme);
 
+//Updating local status state variable
    useEffect(() => {
     todo.status === 'complete' && setStatus('incomplete');
     todo.status === 'incomplete' && setStatus('complete');
    }, [todo.status])
 
+//Updating local color state variable
    useEffect(() => {
     tags.map((tag) => {
         if(tag.tag === todo.tag) {
@@ -40,6 +55,7 @@ export const Todo = ({todo}) => {
     })
    }, [todo.tag, tags])
 
+//Theming
    const [localTheme, setLocalTheme] = useState('lightBlue');
    
    useEffect(() => {

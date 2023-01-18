@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+//Style
 import { SelectionB } from "../../style";
+
+//Actions
 import { setFilterTerm } from "../../app/todoSlice";
 
 export const SelectButton = () => {
@@ -8,7 +12,6 @@ export const SelectButton = () => {
     const [filter, setFilter] = useState('all');
 
     const tags = useSelector(state => state.todo.tag);
-    const filterTerm = useSelector(state => state.todo.filterTerm);
 
     const dispatch = useDispatch();
 

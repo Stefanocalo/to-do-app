@@ -579,8 +579,8 @@ export const TagForm = styled.form`
     align-items: center;
 `;
 export const ThemeSquare=styled.div`
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 2rem;
     @media (max-width: 900px) {
         height: 2rem;
         width: 2rem;
@@ -588,8 +588,8 @@ export const ThemeSquare=styled.div`
 `;
 
 export const FirstThemeSquare=styled.div`
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 2rem;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     @media (max-width: 900px) {
@@ -599,8 +599,8 @@ export const FirstThemeSquare=styled.div`
 
 `;
 export const LastThemeSquare=styled.div`
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 2rem;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     @media (max-width: 900px) {
