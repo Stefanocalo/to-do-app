@@ -84,7 +84,7 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
     }
     getTheme();    
 
-    const top = optionActive ? 0 : 1000;
+    const top = optionActive ? 0 : 4000;
     const opacity = optionActive ? 1 : 0
     const colorTheme = themesTab ? theme.colors.buttonP : theme.colors.secondary;
     const positionTheme = themesTab ? 0 : '-100%';
