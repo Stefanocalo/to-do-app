@@ -84,7 +84,7 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
     }
     getTheme();    
 
-    const top = optionActive ? 0 : 2000;
+    const top = optionActive ? 0 : 1000;
     const opacity = optionActive ? 1 : 0
     const colorTheme = themesTab ? theme.colors.buttonP : theme.colors.secondary;
     const positionTheme = themesTab ? 0 : '-100%';
@@ -128,14 +128,14 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
 
                 <SettingBar >
-                    <IconsContainer  style={{color: colorTag}} role='button'  onClick={() => handleTagClick()}>
+                    {optionActive && <><IconsContainer  style={{color: colorTag}} role='button'  onClick={() => handleTagClick()}>
                         <AiOutlineTags  fontSize='1.6rem'/>
                         <p>Tags</p>
                     </IconsContainer>
                     <IconsContainer style={{color: colorTheme}}  role='button'  onClick={() => handleThemesClick() }>
                         <HiOutlineColorSwatch  fontSize='1.6rem'/>
                         <p>Themes</p>
-                    </IconsContainer >
+                    </IconsContainer ></>}
                     
 
                 </SettingBar>
