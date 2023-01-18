@@ -192,8 +192,8 @@ export const ButtonAdd = styled.button`
     cursor: pointer;
     transition: 0.3s;
     position: fixed;
-    bottom: 4rem;
-    right: 4rem;
+    bottom: 6rem;
+    right: 3rem;
     :hover {
         background-color: ${(props) => props.theme.colors.buttonPhover};
         scale: 1.2;
@@ -203,7 +203,7 @@ export const ButtonAdd = styled.button`
     }
     @media (max-width: 900px) {
         right: 1.5rem;
-        bottom: 1.5rem;
+        bottom: 6rem;
     }
 `;
 
