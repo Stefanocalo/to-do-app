@@ -10,11 +10,6 @@ import { Tag } from "../Tag.jsx/Tag";
 import { NewTagButton } from "../Tag.jsx/NewTagButton";
 import { Theme } from "../Theme/Theme";
 
-import { setTheme } from "../../app/todoSlice";
-
-
-
-
 export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
     const [themesTab, setThemesTab] = useState(false);
@@ -89,7 +84,7 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
     }
     getTheme();    
 
-    const top = optionActive ? 0 : 1000;
+    const top = optionActive ? 0 : 2000;
     const opacity = optionActive ? 1 : 0
     const colorTheme = themesTab ? theme.colors.buttonP : theme.colors.secondary;
     const positionTheme = themesTab ? 0 : '-100%';
