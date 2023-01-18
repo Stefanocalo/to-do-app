@@ -176,6 +176,11 @@ export const ButtonP = styled.button`
     :active {
         scale: 1;
     }
+    @media (max-width: 900px) {
+        :hover {
+            scale: none;
+        }
+    }
 `;
 
 export const ButtonAdd = styled.button`
@@ -204,6 +209,9 @@ export const ButtonAdd = styled.button`
     @media (max-width: 900px) {
         right: 1.5rem;
         bottom: 6rem;
+        :hover {
+            scale: none
+        }
     }
 `;
 
@@ -227,6 +235,11 @@ export const NewTag = styled.button`
     :active {
         scale: 1;
     }
+    @media (max-width: 900px) {
+        :hover {
+            scale: none;
+        }
+    }
 `;
 
 export const CancelNewTag = styled.button`
@@ -249,6 +262,11 @@ export const CancelNewTag = styled.button`
     :active {
         scale: 1;
     }
+    @media (max-width: 900px) {
+        :hover {
+            scale: none;
+        }
+    }
 `;
 
 export const ButtonS = styled.button`
@@ -270,6 +288,11 @@ export const ButtonS = styled.button`
     }
     :active {
         scale: 1;
+    }
+    @media (max-width: 900px) {
+        :hover {
+            scale: none;
+        }
     }
 `;
 
@@ -485,6 +508,11 @@ export const IconsContainer = styled.div`
     margin: 0.2rem 0;
     :hover {
         scale: 1.2;
+    }
+    @media (max-width: 900px) {
+        :hover {
+            scale: none;
+        }
     }
 `;
 
