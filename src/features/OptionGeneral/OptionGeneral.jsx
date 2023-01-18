@@ -3,7 +3,7 @@ import { Modal, SettingContainer, Close, SettingBar, IconsContainer,lightBlue, l
 
 import {AiOutlineTags} from 'react-icons/ai';
 import {HiOutlineColorSwatch} from 'react-icons/hi';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 import { Tag } from "../Tag.jsx/Tag";
@@ -59,25 +59,25 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
             case 'lightBlue':
                 theme = lightBlue;
             break;
-            case lightGreen:
+            case 'lightGreen':
                theme = lightGreen;
              break;
-             case lightPurple:
+             case 'lightPurple':
                theme = lightPurple;
              break;
-             case lightRed:
+             case 'lightRed':
                theme = lightRed;
              break;
             case 'darkBlue':
                 theme = darkBlue;
             break; 
-            case darkGreen:
+            case 'darkGreen':
              theme = darkGreen;
            break;
-           case darkPurple:
+           case 'darkPurple':
              theme = darkPurple;
            break;
-           case darkRed:
+           case 'darkRed':
              theme = darkRed;
            break;
         }
@@ -127,7 +127,7 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
                 </SettingPage>
 
 
-                <SettingBar >
+                <SettingBar style={{backgroundColor: theme.colors.tertiary}} >
                     {optionActive && <><IconsContainer  style={{color: colorTag}} role='button'  onClick={() => handleTagClick()}>
                         <AiOutlineTags  fontSize='1.6rem'/>
                         <p>Tags</p>
