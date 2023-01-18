@@ -38,13 +38,16 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .lableWrapper {
         flex-direction: column;
         margin: 0;
     }
     .mainWrapper {
         width: 100%;
+    }
+    .overflow{
+        padding-bottom: 4.5rem;
     }
 }
 

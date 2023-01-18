@@ -6,8 +6,8 @@ import {HiOutlineColorSwatch} from 'react-icons/hi';
 import { useSelector } from "react-redux";
 
 
-import { Tag } from "../Tag.jsx/Tag";
-import { NewTagButton } from "../Tag.jsx/NewTagButton";
+import { Tag } from "../Tag/Tag";
+import { NewTagButton } from "../Tag/NewTagButton";
 import { Theme } from "../Theme/Theme";
 
 export const OptionGeneral = ({optionActive, setOptionActive }) => {
@@ -94,7 +94,7 @@ export const OptionGeneral = ({optionActive, setOptionActive }) => {
 
     return(
         <Modal style={{opacity: opacity, top: top, alignItems: 'flex-end'}}>
-           <SettingContainer>
+           <SettingContainer >
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                     <Close onClick={() => setOptionActive(false)} >X</Close>
                 </div>
