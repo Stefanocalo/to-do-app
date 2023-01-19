@@ -26,6 +26,14 @@ export const TodoOptions = () => {
     const filterTerm = useSelector(state => state.todo.filterTerm);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if(form || optionActive) {
+            document.body.style.overflow = "hidden";
+        } else if(!form && !optionActive) {
+            document.body.style.overflow = "auto"
+        }
+    }, [form, optionActive])
+
 
 //Event handler
     const handleSelectAll = () => {

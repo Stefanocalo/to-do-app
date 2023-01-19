@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/react";
-import { pureFinalPropsSelectorFactory } from "react-redux/es/connect/selectorFactory";
 
 
 export const Main = styled.div`
@@ -480,6 +478,7 @@ export const SettingContainer = styled.div`
     display: flex;
     flex-direction: column;
     transition: 0.3s;
+    scroll-behaviour: contain;
 `;
 
 export const SettingBar = styled.div`

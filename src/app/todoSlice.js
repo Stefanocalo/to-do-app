@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 //If no data present --> create
 
 
-const getTodoList = () => {
+export const getTodoList = () => {
     const localTodoList = window.localStorage.getItem('todolist');
     if(localTodoList) {
         return JSON.parse(localTodoList);
