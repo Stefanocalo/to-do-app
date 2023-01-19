@@ -297,10 +297,12 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                     >
                         <FormLabel htmlFor="title">Title</FormLabel>
                         <input 
+                        data-testid='titleInput'
                         style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                         type='text' id='title' value={title} onChange={(e) => setTitle(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))} ></input>
                         <FormLabel htmlFor="status">Status</FormLabel>
                         <select 
+                        data-testid='statusInput'
                         style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                         name="status"
                         value={status}
@@ -314,6 +316,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                             {(!addNew && !edit) && (<>
                             <div style={{display: 'flex', alignItems: 'center'}}>
                             <select 
+                            data-testid='tagInput'
                             style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem'}}
                             name="tag"
                             value={tag}
@@ -342,6 +345,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
                         </input>
                             <div style={{display: 'flex', alignItems: 'center'}}>
                                 <select 
+                                data-testid='colorInput'
                                 style={{backgroundColor: theme.colors.primary, color: theme.colors.secondary, height: '2rem', borderRadius: '8px', fontSize: '1rem', padding: '0 1rem', backgroundColor: theme.colors.primary, color: theme.colors.secondary}}
                                 name='color' value={color} onChange={(e) => setColor(e.target.value)}>
                                     <option value='blue'>Blue</option>
@@ -368,6 +372,7 @@ export const TodoForm = ({type, form, setForm, setEditForm, editForm, todo}) => 
 
                         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin: '2rem 0'}}>
                             <ButtonP
+                            data-testid='submitButton'
                             type="submit"
                             >{type === 'update' ? 'Update Task': 'Add Task'}</ButtonP>
                             <ButtonS
