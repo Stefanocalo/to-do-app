@@ -9,13 +9,14 @@ export const getTodoList = () => {
     if(localTodoList) {
         return JSON.parse(localTodoList);
     } else {
-        window.localStorage.setItem('todolist', JSON.stringify([]))
+        return window.localStorage.setItem('todolist', JSON.stringify([]))
     }
 }
 
 const getTag = () => {
     const localTaglist = window.localStorage.getItem('tag');
     if(localTaglist) {
+        console.log(JSON.parse(localTaglist));
         return JSON.parse(localTaglist);
     } else {
         window.localStorage.setItem('tag', JSON.stringify([{tag: 'Main', color: 'blue', tagId: '9351df0a-5257-4da5-a27d-c9d0edfffe78'
@@ -34,8 +35,9 @@ const getTheme = () => {
 
 //Initial state
 const initialState = {
-    todolist: getTodoList(), 
-    tag: getTag(),
+    todolist: getTodoList() ? getTodoList() : [], 
+    tag: getTag() ? getTag() : [{tag: 'Main', color: 'blue', tagId: '9351df0a-5257-4da5-a27d-c9d0edfffe78'
+}],
     filterTerm: '',
     theme: getTheme(),
 }
